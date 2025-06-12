@@ -1,13 +1,37 @@
 @import "tailwindcss";
 
+@theme{
+  --color-light: #ffeedd;
+  --color-green: #00cc99;
+  --color-blue: #4731d4;
+  --color-pink: #ee92c2;
+}
+
+:root{
+  /*Fonts*/
+  --font-family-titles: "Poppins", sans-serif;
+  --font-family-texts: "Hind", sans-serif;
+
+  /*Web pallete colors*/
+  --color-light: #ffeedd;
+  --color-green: #00cc99;
+  --color-blue: #4731d4;
+  --color-pink: #ee92c2;
+}
+
+
 h1 {
-  font-family: "Poppins", sans-serif;
+  font-family:var( --font-family-titles);
   font-weight: 600;
   font-style: normal;
 }
 
 h2, h3, h4, h5 {
-  font-family: "Poppins", sans-serif;
+  font-family:var( --font-family-titles);
   font-weight: 400;
   font-style: normal;
+}
+
+p{
+  font-family: var(--font-family-texts);
 }

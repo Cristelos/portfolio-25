@@ -3,12 +3,10 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
 @Component({
-  selector: 'app-footer',
+  selector: 'app-navbar',
   standalone: true,
   imports: [CommonModule, RouterLink],
-  templateUrl: './footer.component.html',
+  templateUrl: './navbar.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class FooterComponent {
-  public year: number = new Date().getFullYear();
-}
+export class NavbarComponent { }
