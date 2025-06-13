@@ -1,0 +1,17 @@
+@if(primary()){
+  <button
+    class="middle none center mr-3 rounded-lg bg-pink py-3 px-6 font-sans text-xs font-bold uppercase text-blue transition-all hover:bg-green focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+    data-ripple-light="true"
+    [routerLink]="routerLink()"
+  >
+    {{ buttonText() }}
+  </button>
+} @else if (secondary()) {
+  <button
+    class="middle none center mr-3 rounded-lg border border-pink py-3 px-6 font-sans text-xs font-bold uppercase text-pink transition-all hover:opacity-75 hover:border-green hover:text-green focus:ring focus:ring-pink-200 active:opacity-[0.85] disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+    data-ripple-dark="true"
+   [routerLink]="routerLink()"
+  >
+   {{ buttonText() }}
+  </button>
+}
