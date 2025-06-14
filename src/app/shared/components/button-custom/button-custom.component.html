@@ -1,17 +1,24 @@
-@if(primary()){
-  <button
-    class="middle none center mr-3 rounded-lg bg-pink py-3 px-6 font-sans text-xs font-bold uppercase text-blue transition-all hover:bg-green focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
-    data-ripple-light="true"
-    [routerLink]="routerLink()"
-  >
+<button
+  [routerLink]="routerLink()"
+  [disabled]="disabled()"
+  [ngClass]="[
+    'inline-flex items-center justify-center gap-2 mr-3 rounded-lg py-3 px-6 font-sans text-xs font-bold uppercase transition-all duration-300 focus:outline-none',
+    primary() ? 'bg-pink text-blue hover:bg-green' : '',
+    secondary() ? 'border border-pink text-pink hover:border-green hover:text-green' : '',
+    disabled() ? 'opacity-50 cursor-not-allowed pointer-events-none' : ''
+  ]"
+>
+  <span class="inline-flex items-center gap-2">
     {{ buttonText() }}
-  </button>
-} @else if (secondary()) {
-  <button
-    class="middle none center mr-3 rounded-lg border border-pink py-3 px-6 font-sans text-xs font-bold uppercase text-pink transition-all hover:opacity-75 hover:border-green hover:text-green focus:ring focus:ring-pink-200 active:opacity-[0.85] disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
-    data-ripple-dark="true"
-   [routerLink]="routerLink()"
-  >
-   {{ buttonText() }}
-  </button>
-}
+
+    <!-- Material icons -->
+    @if (icons()) {
+    <mat-icon
+      [fontIcon]="icons()"
+      class="text-base"
+      aria-hidden="true"
+    ></mat-icon>
+    }
+
+  </span>
+</button>

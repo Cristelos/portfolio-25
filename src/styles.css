@@ -1,13 +1,13 @@
 @import "tailwindcss";
 
-@theme{
+@theme {
   --color-light: #ffeedd;
   --color-green: #00cc99;
   --color-blue: #4731d4;
   --color-pink: #ee92c2;
 }
 
-:root{
+:root {
   /*Fonts*/
   --font-family-titles: "Poppins", sans-serif;
   --font-family-texts: "Hind", sans-serif;
@@ -19,18 +19,54 @@
   --color-pink: #ee92c2;
 }
 
-
 h1 {
-  font-family:var( --font-family-titles);
+  font-family: var(--font-family-titles);
   font-weight: 600;
   font-style: normal;
 }
 
-h2, h3, h4, h5 {
-  font-family:var( --font-family-titles);
+h2,
+h3,
+h4,
+h5 {
+  font-family: var(--font-family-titles);
   font-style: normal;
 }
 
-p{
+p {
   font-family: var(--font-family-texts);
 }
+
+/* Icons */
+/* Rules for sizing the icon. */
+.material-icons.md-18 {
+  font-size: 18px;
+}
+.material-icons.md-24 {
+  font-size: 24px;
+}
+.material-icons.md-36 {
+  font-size: 36px;
+}
+.material-icons.md-48 {
+  font-size: 48px;
+}
+
+/* Rules for using icons as black on a light background. */
+.material-icons.md-dark {
+  color: rgba(0, 0, 0, 0.54);
+}
+.material-icons.md-dark.md-inactive {
+  color: rgba(0, 0, 0, 0.26);
+}
+
+/* Rules for using icons as white on a dark background. */
+.material-icons.md-light {
+  color: rgba(255, 255, 255, 1);
+}
+.material-icons.md-light.md-inactive {
+  color: rgba(255, 255, 255, 0.3);
+}
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
