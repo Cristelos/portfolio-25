@@ -1,0 +1,23 @@
+<!-- From Uiverse.io by SteveBloX -->
+<div class="card">
+  <div class="card-image">
+    <img
+      [src]="image()"
+      [alt]="title()"
+    />
+  </div>
+
+  <div class="card-texts">
+    <h3 class="text-lg mt-4">{{ title() }}</h3>
+    <h5 class="text-sm text-gray-400 font-extralight">{{ date() }}</h5>
+    <h4 class="text-sm text-gray-400 font-extralight">{{ category() }}</h4>
+  </div>
+
+  <div class="card-button mt-9">
+    <app-button-custom
+      [buttonText]="'Saber más'"
+      [secondary]="true"
+      [routerLink]="'/portfolio'"
+    />
+  </div>
+</div>

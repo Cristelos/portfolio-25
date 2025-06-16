@@ -3,13 +3,13 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { ButtonCustomComponent } from '../../shared/components/button-custom/button-custom.component';
 import { DotsComponent } from '../../shared/decorations/dots/dots.component';
 import { WaveComponent } from '../../shared/decorations/wave/wave.component';
+import { CardComponent } from '../../shared/components/card/card.component';
 
 import { MatIconModule } from '@angular/material/icon';
 
-export interface SkillsIcons {
-  name: string;
-  icon: string;
-}
+import { Skills } from '../../shared/models/skill.model';
+import { Project } from '../../shared/models/project.model';
+import { projects } from '../../shared/data/projects.data';
 
 @Component({
   selector: 'app-home',
@@ -20,13 +20,14 @@ export interface SkillsIcons {
     DotsComponent,
     WaveComponent,
     MatIconModule,
+    CardComponent,
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export default class HomeComponent {
-  public skills: SkillsIcons[] = [
+  public skills: Skills[] = [
     { name: 'HTML5', icon: 'assets/icons/html5.svg' },
     { name: 'CSS3', icon: 'assets/icons/css.svg' },
     { name: 'Sass', icon: 'assets/icons/sass.svg' },
@@ -39,4 +40,11 @@ export default class HomeComponent {
     { name: 'Github', icon: 'assets/icons/github.svg' },
     { name: 'Terminal', icon: 'assets/icons/gnometerminal.svg' },
   ];
+
+  public featuredProjects: Project[] = this.getRandomProjects(3);
+
+  private getRandomProjects(count: number): Project[] {
+    const shuffled = [...projects].sort(() => 0.5 - Math.random());
+    return shuffled.slice(0, count);
+  }
 }

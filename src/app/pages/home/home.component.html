@@ -1,14 +1,21 @@
 <div class="w-full">
-  <header class="bg-blue h-dvh w-full flex justify-center items-center">
+  <!-- Header section-->
+  <header
+    class="header bg-blue min-h-screen w-full flex justify-center items-center"
+  >
     <div
-      class="max-w-6xl w-full px-4 lg:px-8 text-center flex flex-col items-center gap-y-6"
+      class="max-w-6xl w-full px-4 mt-16 lg:px-8 text-center flex flex-col items-center gap-y-6"
     >
       <!--Adding some dots decorations-->
       <app-dots class="header-dots" />
 
       <div class="text-light z-50 text-center flex flex-col items-center pb-8">
-        <h1 class="text-8xl">Frontend Developer</h1>
-        <h2 class="text-5xl mt-2">Patricia Fernández</h2>
+        <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl">
+          Frontend Developer
+        </h1>
+        <h2 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl mt-2">
+          Patricia Fernández
+        </h2>
         <!--Wave decorations-->
         <app-wave class="header-wave mt-2" />
       </div>
@@ -29,7 +36,7 @@
       </div>
 
       <!--RRSS Links-->
-      <div class="text-pink">
+      <div class="text-pink flex flex-wrap gap-2">
         <p class="inline-flex items-center gap-2">
           Sígueme en mis RRSS
           <mat-icon
@@ -38,6 +45,26 @@
             aria-hidden="true"
           ></mat-icon>
         </p>
+
+        <div class="rrss flex flex-wrap gap-2">
+          <a href="https://github.com/Cristelos" target="_blank">
+            <img
+              src="assets/rrss/github-pink.svg"
+              alt="Icono github"
+              class="hover:opacity-30"
+            />
+          </a>
+          <a
+            href="https://www.linkedin.com/in/patricia-fernandez-ruibal/"
+            target="_blank"
+          >
+            <img
+              src="assets/rrss/linkedin-pink.svg"
+              alt="Iconos linkedin"
+              class="hover:opacity-30"
+            />
+          </a>
+        </div>
       </div>
 
       <!--Arrow down direction-->
@@ -53,20 +80,20 @@
   </header>
 
   <!-- About me section-->
-  <div class="about bg-light py-20">
+  <div class="about bg-light py-20 h-dvh  flex justify-center items-center">
     <div
       class="max-w-6xl w-full mx-auto px-4 lg:px-8 flex flex-col lg:flex-row gap-16 items-start"
     >
-      <div class="w-3xl h-2xl p-4">
+      <div class="w-3xl p-4">
         <img
           src="https://res.cloudinary.com/dgguxcib9/image/upload/v1749905161/portfolio/portrait_qxhwi7.png"
           alt="Self portrait"
           width="400px"
-          class="about-portrait"
+          class="about-portrait z-50"
         />
 
         <!--Adding some dots decorations-->
-        <app-dots class="about-dots" />
+        <app-dots class="about-dots z-0" />
       </div>
 
       <div class="text-blue w-3xl">
@@ -93,9 +120,11 @@
 
   <!-- Skills carrusell-->
   <div class="skills bg-green h-40 flex flex-col justify-center items-center">
-    <div class="w-full flex flex-row flex-nowrap justify-around gap-4 text-white px-4 lg:px-8">
+    <div
+      class="w-full flex flex-row flex-nowrap justify-around gap-4 text-white px-4 lg:px-8"
+    >
       @for (skill of skills; track $index) {
-      <img [src]="skill.icon" [alt]="skill.name" class="w-14 h-w-14 " />
+      <img [src]="skill.icon" [alt]="skill.name" class="w-14 h-w-14" />
       } @empty {
       <p>No hay iconos para mostrar</p>
       }
@@ -103,12 +132,43 @@
   </div>
 
   <!-- Recent projects-->
-  <div class="projects bg-white py-20">
+  <div class="projects h-dvh  flex justify-center items-center bg-white py-20">
     <div class="max-w-6xl mx-auto px-4 lg:px-8">
-      <h2 class="text-3xl font-semibold pb-6 text-blue">Recent Projects</h2>
+      <h2 class="text-3xl font-semibold text-blue">Recent Projects</h2>
+      <!--Wave decorations-->
+      <app-wave />
+
+      <!-- Projects cards-->
+      <div class="flex flex-wrap justify-around gap-4 pt-8">
+        @for (project of featuredProjects; track project.id) {
+        <app-card
+          [image]="project.image"
+          [title]="project.title"
+          [category]="project.category"
+          [date]="project.date"
+        />
+        } @empty {
+        <p>No hay proyectos para mostrar</p>
+        }
+      </div>
     </div>
   </div>
 
   <!-- Contact-->
-  <div class="h-96 bg-blue"></div>
+  <div class="h-dvh  flex justify-center items-center bg-blue text-light">
+    <div
+      class="max-w-6xl w-full mx-auto px-4 lg:px-8 flex flex-col gap-16 items-center"
+    >
+      <h2>Contacto</h2>
+      <!--Wave decorations-->
+      <app-wave class="header-wave mt-2" />
+      <p>¿Te apetece saber algo más? Escríbeme un correo y charlemos.</p>
+      <app-button-custom
+        [buttonText]="'Contactar'"
+        [icons]="'mail_outline'"
+        [secondary]="true"
+        [routerLink]="'/contact'"
+      />
+    </div>
+  </div>
 </div>

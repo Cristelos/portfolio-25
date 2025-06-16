@@ -7,9 +7,36 @@
     <a class="hover:underline" routerLink="/contact">Contact</a>
   </div>
 
-  <div>
-    <p>Sígueme en mis RRSS →</p>
-  </div>
+  <div class="text-blue flex flex-wrap  gap-2">
+        <p class="inline-flex items-center gap-2">
+          Sígueme en mis RRSS
+          <mat-icon
+            fontIcon="trending_flat"
+            class="material-icons-round text-rrss"
+            aria-hidden="true"
+          ></mat-icon>
+        </p>
+
+        <div class="rrss flex flex-wrap gap-2 ">
+          <a href="https://github.com/Cristelos" target="_blank">
+            <img
+              src="assets/rrss/github-blue.svg"
+              alt="Icono github"
+              class="hover:opacity-30 w-9"
+            />
+          </a>
+          <a
+            href="https://www.linkedin.com/in/patricia-fernandez-ruibal/"
+            target="_blank"
+          >
+            <img
+              src="assets/rrss/linkedin-blue.svg"
+              alt="Iconos linkedin"
+              class="hover:opacity-30 w-9"
+            />
+          </a>
+        </div>
+      </div>
   <div class="text-sm mt-6">
     <p>© {{ year }} Patricia Fernández Ruibal</p>
   </div>
