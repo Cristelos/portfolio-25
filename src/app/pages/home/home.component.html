@@ -1,82 +1,114 @@
-<!--Welcome banner-->
-<header
-  class="bg-blue h-dvh w-full flex flex-col flex-wrap justify-center gap-y-5 items-center"
->
-  <!--Adding some dots decorations-->
-  <app-dots class="header-dots" />
+<div class="w-full">
+  <header class="bg-blue h-dvh w-full flex justify-center items-center">
+    <div
+      class="max-w-6xl w-full px-4 lg:px-8 text-center flex flex-col items-center gap-y-6"
+    >
+      <!--Adding some dots decorations-->
+      <app-dots class="header-dots" />
 
-  <div class="text-light z-50 text-center flex flex-col items-center pb-8">
-    <h1 class="text-9xl">Frontend Developer</h1>
-    <h2 class="text-5xl mt-2">Patricia Fernández</h2>
-    <!--Wave decorations-->
-    <app-wave class="header-wave mt-2" />
+      <div class="text-light z-50 text-center flex flex-col items-center pb-8">
+        <h1 class="text-8xl">Frontend Developer</h1>
+        <h2 class="text-5xl mt-2">Patricia Fernández</h2>
+        <!--Wave decorations-->
+        <app-wave class="header-wave mt-2" />
+      </div>
+
+      <div class="flex flex-row flex-nowrap">
+        <app-button-custom
+          [buttonText]="'Ver proyectos'"
+          [icons]="'open_in_new'"
+          [primary]="true"
+          [routerLink]="'/portfolio'"
+        />
+        <app-button-custom
+          [buttonText]="'Contactar'"
+          [icons]="'mail_outline'"
+          [secondary]="true"
+          [routerLink]="'/contact'"
+        />
+      </div>
+
+      <!--RRSS Links-->
+      <div class="text-pink">
+        <p class="inline-flex items-center gap-2">
+          Sígueme en mis RRSS
+          <mat-icon
+            fontIcon="trending_flat"
+            class="material-icons-round text-rrss"
+            aria-hidden="true"
+          ></mat-icon>
+        </p>
+      </div>
+
+      <!--Arrow down direction-->
+      <div class="text-pink text-7xl mt-8">
+        <mat-icon
+          fontIcon="arrow_downward"
+          inline
+          class="material-icons-round"
+          aria-hidden="true"
+        ></mat-icon>
+      </div>
+    </div>
+  </header>
+
+  <!-- About me section-->
+  <div class="about bg-light py-20">
+    <div
+      class="max-w-6xl w-full mx-auto px-4 lg:px-8 flex flex-col lg:flex-row gap-16 items-start"
+    >
+      <div class="w-3xl h-2xl p-4">
+        <img
+          src="https://res.cloudinary.com/dgguxcib9/image/upload/v1749905161/portfolio/portrait_qxhwi7.png"
+          alt="Self portrait"
+          width="400px"
+          class="about-portrait"
+        />
+
+        <!--Adding some dots decorations-->
+        <app-dots class="about-dots" />
+      </div>
+
+      <div class="text-blue w-3xl">
+        <h2 class="text-3xl font-semibold">About me</h2>
+        <!--Wave decorations-->
+        <app-wave class="header-wave mt-2" />
+        <p class="text-xl pt-6">
+          ¡Hola! Soy Patricia Fernández, desarrolladora frontend con experiencia
+          en Angular y un pasado ligado al diseño web y gráfico. Me gusta
+          trabajar en proyectos que combinan código y diseño, donde puedo cuidar
+          tanto la funcionalidad como la parte visual.
+        </p>
+        <br />
+        <p class="text-xl">
+          Disfruto creando interfaces limpias, modulares y bien estructuradas.
+          Me siento cómoda trabajando en equipo, colaborando con perfiles
+          técnicos o de diseño, y aprendiendo cosas nuevas cada vez que el
+          proyecto lo pide. No me asustan los retos, al contrario: suelen ser lo
+          que más me motiva a seguir creciendo como profesional.
+        </p>
+      </div>
+    </div>
   </div>
 
-  <div class="flex flex-row flex-nowrap">
-    <app-button-custom
-      [buttonText]="'Ver proyectos'"
-      [icons]="'open_in_new'"
-      [primary]="true"
-      [routerLink]="'/portfolio'"
-    />
-    <app-button-custom
-      [buttonText]="'Contactar'"
-      [icons]="'mail_outline'"
-      [secondary]="true"
-      [routerLink]="'/contact'"
-    />
+  <!-- Skills carrusell-->
+  <div class="skills bg-green h-40 flex flex-col justify-center items-center">
+    <div class="w-full flex flex-row flex-nowrap justify-around gap-4 text-white px-4 lg:px-8">
+      @for (skill of skills; track $index) {
+      <img [src]="skill.icon" [alt]="skill.name" class="w-14 h-w-14 " />
+      } @empty {
+      <p>No hay iconos para mostrar</p>
+      }
+    </div>
   </div>
 
-  <!--RRSS Links-->
-  <div class="text-pink">
-    <p class="inline-flex items-center gap-2">
-      Sígueme en mis RRSS
-      <mat-icon
-        fontIcon="trending_flat"
-        class="text-base"
-        aria-hidden="true"
-      ></mat-icon>
-    </p>
+  <!-- Recent projects-->
+  <div class="projects bg-white py-20">
+    <div class="max-w-6xl mx-auto px-4 lg:px-8">
+      <h2 class="text-3xl font-semibold pb-6 text-blue">Recent Projects</h2>
+    </div>
   </div>
-</header>
 
-<!-- About me section-->
-<div class="bg-light h-9/10 w-full flex flex-row flex-nowrap gap-16 p-24">
-  <div class="w-3xl h-2xl p-4">
-    <img
-      src="https://res.cloudinary.com/dgguxcib9/image/upload/v1749905161/portfolio/portrait_qxhwi7.png"
-      alt="Self portrait"
-      width="400px"
-    />
-  </div>
-  <div class="text-blue w-3xl">
-    <h2 class="text-3xl font-semibold">About me</h2>
-    <!--Wave decorations-->
-    <app-wave class="header-wave mt-2" />
-    <p class="text-xl pt-6">
-      ¡Hola! Soy Patricia Fernández, desarrolladora frontend con experiencia en
-      Angular y un pasado ligado al diseño web y gráfico. Me gusta trabajar en
-      proyectos que combinan código y diseño, donde puedo cuidar tanto la
-      funcionalidad como la parte visual.
-    </p>
-    <br />
-    <p class="text-xl">
-      Disfruto creando interfaces limpias, modulares y bien estructuradas. Me
-      siento cómoda trabajando en equipo, colaborando con perfiles técnicos o de
-      diseño, y aprendiendo cosas nuevas cada vez que el proyecto lo pide. No me
-      asustan los retos, al contrario: suelen ser lo que más me motiva a seguir
-      creciendo como profesional.
-    </p>
-  </div>
+  <!-- Contact-->
+  <div class="h-96 bg-blue"></div>
 </div>
-
-<!-- Skills carrusell-->
-<div class="bg-green w-full h-40"></div>
-
-<!-- Recent projects-->
-<div class="bg-white h-dvh p-24">
-  <h2 class="text-3xl font-semibold pb-6 text-blue">Recent Projects</h2>
-</div>
-
-<!-- Contact-->
-<div class="w-full h-96 bg-blue"></div>

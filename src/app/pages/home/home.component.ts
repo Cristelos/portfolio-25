@@ -6,6 +6,11 @@ import { WaveComponent } from '../../shared/decorations/wave/wave.component';
 
 import { MatIconModule } from '@angular/material/icon';
 
+export interface SkillsIcons {
+  name: string;
+  icon: string;
+}
+
 @Component({
   selector: 'app-home',
   standalone: true,
@@ -20,4 +25,18 @@ import { MatIconModule } from '@angular/material/icon';
   styleUrl: './home.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export default class HomeComponent {}
+export default class HomeComponent {
+  public skills: SkillsIcons[] = [
+    { name: 'HTML5', icon: 'assets/icons/html5.svg' },
+    { name: 'CSS3', icon: 'assets/icons/css.svg' },
+    { name: 'Sass', icon: 'assets/icons/sass.svg' },
+    { name: 'Angular', icon: 'assets/icons/angular.svg' },
+    { name: 'JavaScript', icon: 'assets/icons/javascript.svg' },
+    { name: 'Typescript', icon: 'assets/icons/typescript.svg' },
+    { name: 'RxJS', icon: 'assets/icons/reactivex.svg' },
+    { name: 'Figma', icon: 'assets/icons/figma.svg' },
+    { name: 'Git', icon: 'assets/icons/git.svg' },
+    { name: 'Github', icon: 'assets/icons/github.svg' },
+    { name: 'Terminal', icon: 'assets/icons/gnometerminal.svg' },
+  ];
+}
