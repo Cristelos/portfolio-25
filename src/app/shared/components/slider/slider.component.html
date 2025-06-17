@@ -3,28 +3,38 @@
 >
   <button
     (click)="changeSlide(-1)"
-    class="button text-3xl text-blue font-bold hover:text-pink"
+    class="text-3xl text-blue font-bold cursor-pointer hover:text-pink"
   >
-    &#10094;
+    <mat-icon
+      fontIcon="arrow_back_ios"
+      inline
+      class="material-icons-round"
+      aria-hidden="true"
+    ></mat-icon>
   </button>
 
   <div class="w-full flex justify-center gap-4">
     @for (slide of getVisibleSlides(); track slide.id) {
-      <app-card
-        [image]="slide.image"
-        [title]="slide.title"
-        [category]="slide.category"
-        [date]="slide.date"
-        [description]="slide.description"
-      />
+    <app-card
+      [image]="slide.image"
+      [title]="slide.title"
+      [category]="slide.category"
+      [date]="slide.date"
+      [description]="slide.description"
+    />
     }
   </div>
 
   <button
     (click)="changeSlide(1)"
-    class="button text-3xl text-blue font-bold hover:text-pink"
+    class="text-3xl text-blue font-bold cursor-pointer hover:text-pink"
   >
-    &#10095;
+    <mat-icon
+      fontIcon="arrow_forward_ios"
+      inline
+      class="material-icons-round"
+      aria-hidden="true"
+    ></mat-icon>
   </button>
 </div>
 

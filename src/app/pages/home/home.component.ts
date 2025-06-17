@@ -3,7 +3,6 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { ButtonCustomComponent } from '../../shared/components/button-custom/button-custom.component';
 import { DotsComponent } from '../../shared/decorations/dots/dots.component';
 import { WaveComponent } from '../../shared/decorations/wave/wave.component';
-import { CardComponent } from '../../shared/components/card/card.component';
 
 import { MatIconModule } from '@angular/material/icon';
 

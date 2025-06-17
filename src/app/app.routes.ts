@@ -18,10 +18,6 @@ export const routes: Routes = [
         loadComponent: () => import('./pages/portfolio/portfolio.component'),
       },
       {
-        path: 'resume',
-        loadComponent: () => import('./pages/resume/resume.component'),
-      },
-      {
         path: 'contact',
         loadComponent: () => import('./pages/contact/contact.component'),
       },

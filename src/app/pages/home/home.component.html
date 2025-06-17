@@ -9,7 +9,7 @@
       <!--Adding some dots decorations-->
       <app-dots class="dots header-dots" />
 
-      <div class="text-light z-50 text-center flex flex-col items-center pb-8 ">
+      <div class="text-light z-50 text-center flex flex-col items-center pb-8">
         <h1 class="text-4xl sm:text-5xl md:text-7xl lg:text-7xl xl:text-8xl">
           Frontend Developer
         </h1>
@@ -86,7 +86,7 @@
     >
       <div class="w-3xl p-4 relative">
         <img
-          src="https://res.cloudinary.com/dgguxcib9/image/upload/v1749905161/portfolio/portrait_qxhwi7.png"
+          src="https://res.cloudinary.com/dgguxcib9/image/upload/v1750173872/portrait-background_x8uf8x.png"
           alt="Self portrait"
           width="400px"
           class="about-portrait z-50"
@@ -132,7 +132,7 @@
   </div>
 
   <!-- Recent projects-->
-  <div class=" h-dvh flex justify-start items-center bg-white py-20">
+  <div class="h-dvh flex justify-start items-center bg-white py-20">
     <div class="max-w-7xl mx-auto px-4 lg:px-8 projects relative">
       <div class="mb-10">
         <h2 class="text-3xl font-semibold text-blue">Recent Projects</h2>
@@ -141,7 +141,7 @@
       </div>
 
       <!-- Proyects slider-->
-      <app-slider [slides]="featuredProjects"/>
+      <app-slider [slides]="featuredProjects" />
       <!--Adding some dots decorations-->
       <app-dots class="dots projects-dots" />
     </div>
@@ -150,20 +150,24 @@
   <!-- Contact-->
   <div class="h-dvh flex justify-center items-center bg-blue text-light">
     <div
-      class="max-w-7xl w-full mx-auto px-4 lg:px-8 flex flex-col gap-16 items-center"
+      class="contact relative max-w-7xl w-full mx-auto px-4 lg:px-8 flex flex-col gap-16 items-center"
     >
-    <div class="text-center">
-      <h2 class="text-5xl font-semibold">Contacto</h2>
-      <!--Wave decorations-->
-      <app-wave/>
-    </div>
-      <p class="text-xl">¿Te apetece saber algo más? Escríbeme un correo y charlemos.</p>
+      <div class="text-center">
+        <h2 class="text-5xl font-semibold">Contacto</h2>
+        <!--Wave decorations-->
+        <app-wave />
+      </div>
+      <p class="text-xl">
+        ¿Te apetece saber algo más? Escríbeme un correo y charlemos.
+      </p>
       <app-button-custom
         [buttonText]="'Contactar'"
         [icons]="'mail_outline'"
         [secondary]="true"
         [routerLink]="'/contact'"
       />
+       <!--Adding some dots decorations-->
+        <app-dots class="dots contact-dots" />
     </div>
   </div>
 </div>

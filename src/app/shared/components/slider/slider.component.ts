@@ -2,16 +2,17 @@ import { CommonModule } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
-  Signal,
-  input
+  input,
 } from '@angular/core';
 import { CardComponent } from '../card/card.component';
 import { Project } from '../../models/project.model';
 
+import { MatIconModule } from '@angular/material/icon';
+
 @Component({
   selector: 'app-slider',
   standalone: true,
-  imports: [CommonModule, CardComponent],
+  imports: [CommonModule, CardComponent, MatIconModule],
   templateUrl: './slider.component.html',
   styleUrl: './slider.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -45,17 +46,20 @@ export class SliderComponent {
     return new Array(numberOfGroups);
   }
 
-
   changeSlide(n: number) {
     const allSlides = this.slides();
     if (!allSlides.length) return;
 
     const totalGroups = Math.ceil(allSlides.length / this.SLIDES_PER_VIEW);
 
-    this.slideIndex = (this.slideIndex + n * this.SLIDES_PER_VIEW + allSlides.length) % allSlides.length;
+    this.slideIndex =
+      (this.slideIndex + n * this.SLIDES_PER_VIEW + allSlides.length) %
+      allSlides.length;
 
     if (this.slideIndex < 0) {
-      this.slideIndex = allSlides.length - (allSlides.length % this.SLIDES_PER_VIEW || this.SLIDES_PER_VIEW);
+      this.slideIndex =
+        allSlides.length -
+        (allSlides.length % this.SLIDES_PER_VIEW || this.SLIDES_PER_VIEW);
     } else if (this.slideIndex >= allSlides.length) {
       this.slideIndex = 0;
     }
@@ -68,7 +72,9 @@ export class SliderComponent {
     this.slideIndex = groupIndex * this.SLIDES_PER_VIEW;
 
     if (this.slideIndex >= allSlides.length) {
-        this.slideIndex = allSlides.length - (allSlides.length % this.SLIDES_PER_VIEW || this.SLIDES_PER_VIEW);
+      this.slideIndex =
+        allSlides.length -
+        (allSlides.length % this.SLIDES_PER_VIEW || this.SLIDES_PER_VIEW);
     }
   }
 
