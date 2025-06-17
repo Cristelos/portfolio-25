@@ -5,6 +5,17 @@
   --color-green: #00cc99;
   --color-blue: #4731d4;
   --color-pink: #ee92c2;
+
+  --color-red: #ec0b43;
+  --color-mustard: #f1b500;
+  --color-pumpkin: #fe7f2d;
+
+  --color-green-light: rgba(0, 204, 153, 0.2);
+  --color-blue-light: rgba(71, 49, 212, 0.2);
+  --color-pink-light: rgba(238, 146, 194, 0.2);
+  --color-red-light: #ec0b433e;
+  --color-mustard-light: #fed86640;
+  --color-pumpkin-light: #fe812d39;
 }
 
 :root {
@@ -17,6 +28,17 @@
   --color-green: #00cc99;
   --color-blue: #4731d4;
   --color-pink: #ee92c2;
+  --color-red: #ec0b43;
+  --color-mustard: #f1b500;
+  --color-pumpkin: #fe7f2d;
+
+  --color-light-20: rgba(255, 238, 221, 0.2);
+  --color-green-20: rgba(0, 204, 153, 0.2);
+  --color-blue-20: rgba(71, 49, 212, 0.2);
+  --color-pink-20: rgba(238, 146, 194, 0.2);
+  --color-red-20: #ec0b433e;
+  --color-mustard-20: #fed86640;
+  --color-pumpkin-20: #fe812d39;
 }
 
 h1 {
@@ -68,5 +90,10 @@ p {
   color: rgba(255, 255, 255, 0.3);
 }
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+}

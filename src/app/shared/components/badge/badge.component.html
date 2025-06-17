@@ -1,0 +1,11 @@
+<h4 class="badge"
+    [ngClass]="[
+      categoryName() === 'HTML' ? 'text-blue bg-blue-light' : '',
+      categoryName() === 'CSS' ? 'text-pink bg-pink-light' : '',
+      categoryName() === 'Nodejs' ? 'text-green bg-green-light' : '',
+      categoryName() === 'Javascript' ? 'text-mustard bg-mustard-light' : '',
+      categoryName() === 'Angular' ? 'text-red bg-red-light' : '',
+      categoryName() === 'React' ? 'text-pumpkin bg-pumpkin-light' : '',
+    ]">
+    #{{ categoryName() }}
+  </h4>

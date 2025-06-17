@@ -1,23 +1,26 @@
-<!-- From Uiverse.io by SteveBloX -->
-<div class="card">
-  <div class="card-image">
-    <img
-      [src]="image()"
-      [alt]="title()"
-    />
-  </div>
+<div class="maincontainer">
+  <div class="front">
+    <div class="image">
+      <img [src]="image()" [alt]="title()" />
+    </div>
 
-  <div class="card-texts">
-    <h3 class="text-lg mt-4">{{ title() }}</h3>
-    <h5 class="text-sm text-gray-400 font-extralight">{{ date() }}</h5>
-    <h4 class="text-sm text-gray-400 font-extralight">{{ category() }}</h4>
-  </div>
+    <h3 class="title text-base font-medium mt-4">{{ title() }}</h3>
+    <h5 class="text-xs text-gray-400 font-extralight mt-1">{{ date() }}</h5>
 
-  <div class="card-button mt-9">
-    <app-button-custom
-      [buttonText]="'Saber más'"
-      [secondary]="true"
-      [routerLink]="'/portfolio'"
+    <div class="flex flex-wrap gap-1">
+      @if (category()) {
+          @for (cat of category(); track cat.id) {
+          <app-badge [categoryName]="cat.name"/>
+        }
+      }
+    </div>
+
+   <app-button-custom
+          [buttonText]="'Ver más'"
+          [secondary]="true"
+          [routerLink]="'/contact'"
+          class="mt-9"
     />
+
   </div>
 </div>
