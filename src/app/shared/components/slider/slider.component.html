@@ -1,0 +1,39 @@
+<div
+  class="w-full max-w-7xl mx-auto flex items-center justify-center gap-4 relative"
+>
+  <button
+    (click)="changeSlide(-1)"
+    class="button text-3xl text-blue font-bold hover:text-pink"
+  >
+    &#10094;
+  </button>
+
+  <div class="w-full flex justify-center gap-4">
+    @for (slide of getVisibleSlides(); track slide.id) {
+      <app-card
+        [image]="slide.image"
+        [title]="slide.title"
+        [category]="slide.category"
+        [date]="slide.date"
+        [description]="slide.description"
+      />
+    }
+  </div>
+
+  <button
+    (click)="changeSlide(1)"
+    class="button text-3xl text-blue font-bold hover:text-pink"
+  >
+    &#10095;
+  </button>
+</div>
+
+<div class="flex justify-center gap-2 mt-8">
+  @for (_ of getIndicatorSlides(); track $index; let i = $index) {
+  <span
+    class="w-3 h-3 rounded-full border border-blue cursor-pointer transition-all duration-200"
+    [class.bg-blue]="i === getCurrentGroupIndex()"
+    (click)="goToSlide(i)"
+  ></span>
+  }
+</div>

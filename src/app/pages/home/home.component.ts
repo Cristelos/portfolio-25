@@ -10,6 +10,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { Skills } from '../../shared/models/skill.model';
 import { Project } from '../../shared/models/project.model';
 import { projects } from '../../shared/data/projects.data';
+import { SliderComponent } from "../../shared/components/slider/slider.component";
 
 @Component({
   selector: 'app-home',
@@ -20,8 +21,8 @@ import { projects } from '../../shared/data/projects.data';
     DotsComponent,
     WaveComponent,
     MatIconModule,
-    CardComponent,
-  ],
+    SliderComponent
+],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -41,7 +42,7 @@ export default class HomeComponent {
     { name: 'Terminal', icon: 'assets/icons/gnometerminal.svg' },
   ];
 
-  public featuredProjects: Project[] = this.getRandomProjects(3);
+  public featuredProjects: Project[] = projects;
 
   private getRandomProjects(count: number): Project[] {
     const shuffled = [...projects].sort(() => 0.5 - Math.random());

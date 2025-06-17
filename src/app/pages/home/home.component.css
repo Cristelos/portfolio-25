@@ -1,29 +1,53 @@
-.header{
-  .header-dots {
-    position: absolute;
-    top: 21%;
-    z-index: 0;
-    right: 65%;
-  }
-
-  .rrss img{
-    width: 36px;
-    aspect-ratio: 1/1;
-    object-fit: contain;
-  }
-
+.dots {
+  position: absolute;
+  z-index: 0;
+  /* opacity: 0.5; */
+  pointer-events: none;
 }
 
+/* Header */
+.header {
+  position: relative;
+}
+.rrss img {
+  width: 36px;
+  aspect-ratio: 1/1;
+  object-fit: contain;
+}
+
+.header-dots {
+  top: -32%;
+  left: -8%;
+  width: 300px;
+}
+
+/* About me */
 .about {
+  position: relative;
+
   .about-dots {
-    position: absolute;
-    top: 94%;
-    z-index: 0;
-    right: 65%;
-    z-index: 0;
+    top: -41%;
+    left: -32%;
+    width: 250px;
   }
 
-  .about-portrait{
-    z-index: 1000;
+  .about-portrait {
+    position: relative;
+    z-index: 10;
   }
+}
+
+/* Projects */
+.projects {
+  position: relative;
+
+  .projects-dots {
+    top: 50%;
+    left: 75%;
+    width: 300px;
+  }
+  app-slider {
+  position: relative;
+  z-index: 10;
+}
 }
