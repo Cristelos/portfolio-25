@@ -1,1 +1,25 @@
-<p>contact works!</p>,
+<!-- Contact-->
+<div class="h-dvh flex justify-center items-center bg-blue text-light">
+  <div
+    class="contact relative max-w-7xl w-full mx-auto px-4 lg:px-8 flex flex-col gap-16 items-center"
+  >
+    <div class="text-center flex flex-col items-center">
+      <h1 class="text-4xl sm:text-5xl md:text-7xl lg:text-7xl xl:text-8xl">
+        Contacto
+      </h1>
+      <!--Wave decorations-->
+      <app-wave />
+    </div>
+    <p class="text-xl">
+      ¿Te apetece saber algo más? Escríbeme un correo y charlemos.
+    </p>
+    <app-button-custom
+      [buttonText]="'Contactar'"
+      [icons]="'mail_outline'"
+      [secondaryPink]="true"
+      [routerLink]="'/contact'"
+    />
+    <!--Adding some dots decorations-->
+    <app-dots class="dots contact-dots" />
+  </div>
+</div>

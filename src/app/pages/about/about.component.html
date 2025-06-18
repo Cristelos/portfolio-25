@@ -2,7 +2,26 @@
   <div
     class="max-w-7xl w-full mx-auto px-4 lg:px-8 flex flex-col lg:flex-row gap-16 items-start"
   >
-    <div class="md:w-3xl p-4 relative">
+    <div class="text-blue md:w-3xl p-4 relative">
+      <h1 class="text-4xl sm:text-5xl md:text-7xl lg:text-7xl xl:text-8xl">
+        About me
+      </h1>
+      <!--Wave decorations-->
+      <app-wave class="about-wave mt-2" />
+
+      <div class="text-blue text-base pt-6">
+        <p>
+          Soy desarrolladora frontend especializada en Angular, JavaScript y
+          diseño de interfaces. Combino una fuerte base técnica con sensibilidad
+          estética para crear experiencias web eficientes, accesibles y
+          visualmente coherentes. Disfruto trabajando en equipo, colaborando con
+          perfiles técnicos y creativos, y me adapto con rapidez a nuevos retos
+          y tecnologías.
+        </p>
+      </div>
+    </div>
+
+    <div class="text-blue md:w-3xl">
       <img
         src="https://res.cloudinary.com/dgguxcib9/image/upload/v1750173872/portrait-background_x8uf8x.png"
         alt="Self portrait"
@@ -13,31 +32,42 @@
       <!--Adding some dots decorations-->
       <app-dots class="dots about-dots" />
     </div>
-
-    <div class="text-blue md:w-3xl">
-      <h2 class="text-3xl font-semibold">About me</h2>
-      <!--Wave decorations-->
-      <app-wave class="about-wave mt-2" />
-      <p class="text-xl pt-6">
-        ¡Hola! Soy Patricia Fernández, desarrolladora frontend con experiencia
-        en Angular y un pasado ligado al diseño web y gráfico. Me gusta trabajar
-        en proyectos que combinan código y diseño, donde puedo cuidar tanto la
-        funcionalidad como la parte visual.
-      </p>
-      <br />
-      <p class="text-xl">
-        Disfruto creando interfaces limpias, modulares y bien estructuradas. Me
-        siento cómoda trabajando en equipo, colaborando con perfiles técnicos o
-        de diseño, y aprendiendo cosas nuevas cada vez que el proyecto lo pide.
-        No me asustan los retos, al contrario: suelen ser lo que más me motiva a
-        seguir creciendo como profesional.
-      </p>
-    </div>
   </div>
 </div>
+<section class="skills-section py-16 bg-blue text-light">
+  <div class="max-w-7xl mx-auto px-4 lg:px-8">
+    <div class="mx-auto mb-8">
+      <h2 class="text-3xl font-semibold text-left">Habilidades</h2>
+      <!-- Wave decoration -->
+      <app-wave />
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 text-lg">
+      <span>- HTML5</span>
+      <span>- CSS3 / Sass</span>
+      <span>- JavaScript / TypeScript</span>
+
+      <span>- Angular</span>
+      <span>- RxJS</span>
+      <span>- Git / GitHub</span>
+
+      <span>- Figma</span>
+      <span>- Adobe Suite</span>
+      <span>- Terminal / CLI</span>
+
+      <!-- Metodologías y prácticas -->
+      <span>- Metodologías Ágiles</span>
+      <span>- Clean Code</span>
+
+      <!-- Soft skills -->
+      <span>- Trabajo en equipo</span>
+      <span>- Aprendizaje continuo</span>
+    </div>
+  </div>
+</section>
 
 <!--Timeline-->
-<div class="flex flex-col justify-start items-center bg-white py-4">
+<div class="h-full flex flex-col justify-start items-center bg-white py-16">
   <div class="max-w-7xl mx-auto px-4 lg:px-8">
     <div class="flex flex-col justify-start items-center mb-9 mt-4">
       <h2 class="text-3xl font-semibold text-blue">Mi experiencia</h2>
@@ -216,7 +246,9 @@
             <h3 class="timeline-title text-base font-medium">
               Prácticas como diseñadora gráfica
             </h3>
-            <p class="test-sm/6 text-gray-400">Crealtia / Jornada completa</p>
+            <p class="test-sm/6 text-gray-400">
+              Anónimo Advertising / Jornada completa
+            </p>
             <p class="test-sm/6 text-gray-400">Vigo, Pontevedra</p>
             <p class="text-base/8 list-disc">
               Diseño y maquetación de diferentes elementos como posters,
