@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import {MatIconModule} from '@angular/material/icon';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-button-custom',
@@ -13,8 +13,14 @@ import {MatIconModule} from '@angular/material/icon';
 })
 export class ButtonCustomComponent {
   // Buttons types
-  public primary = input<boolean>(false);
-  public secondary = input<boolean>(false);
+  public primaryPink = input<boolean>(false);
+  public secondaryPink = input<boolean>(false);
+
+  public primaryBlue = input<boolean>(false);
+  public secondaryBlue = input<boolean>(false);
+
+  public primaryGreen = input<boolean>(false);
+  public secondaryGreen = input<boolean>(false);
 
   public icons = input<string>('');
 

@@ -24,13 +24,13 @@
         <app-button-custom
           [buttonText]="'Ver proyectos'"
           [icons]="'open_in_new'"
-          [primary]="true"
+          [primaryPink]="true"
           [routerLink]="'/portfolio'"
         />
         <app-button-custom
           [buttonText]="'Contactar'"
           [icons]="'mail_outline'"
-          [secondary]="true"
+          [secondaryPink]="true"
           [routerLink]="'/contact'"
         />
       </div>
@@ -107,13 +107,18 @@
           tanto la funcionalidad como la parte visual.
         </p>
         <br />
-        <p class="text-xl">
+        <p class="text-xl mb-4">
           Disfruto creando interfaces limpias, modulares y bien estructuradas.
           Me siento cómoda trabajando en equipo, colaborando con perfiles
           técnicos o de diseño, y aprendiendo cosas nuevas cada vez que el
           proyecto lo pide. No me asustan los retos, al contrario: suelen ser lo
           que más me motiva a seguir creciendo como profesional.
         </p>
+        <app-button-custom
+          [buttonText]="'Saber más'"
+          [primaryGreen]="true"
+          [routerLink]="'/about'"
+        />
       </div>
     </div>
   </div>
@@ -163,7 +168,7 @@
       <app-button-custom
         [buttonText]="'Contactar'"
         [icons]="'mail_outline'"
-        [secondary]="true"
+        [secondaryPink]="true"
         [routerLink]="'/contact'"
       />
        <!--Adding some dots decorations-->

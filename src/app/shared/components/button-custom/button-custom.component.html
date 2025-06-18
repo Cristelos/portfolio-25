@@ -3,8 +3,18 @@
   [disabled]="disabled()"
   [ngClass]="[
     'inline-flex items-center justify-center gap-2 mr-3 rounded-lg py-3 px-6 font-sans text-xs font-bold uppercase transition-all duration-300 focus:outline-none',
-    primary() ? 'bg-pink text-blue hover:bg-green' : '',
-    secondary() ? 'border border-pink text-pink hover:border-green hover:text-green' : '',
+    primaryPink() ? 'bg-pink text-blue hover:bg-green' : '',
+    secondaryPink()
+      ? 'border border-pink text-pink hover:border-green hover:text-green'
+      : '',
+    primaryBlue() ? 'bg-blue text-pink hover:bg-pink' : '',
+    secondaryBlue()
+      ? 'border border-blue text-blue hover:border-pink hover:text-pink'
+      : '',
+    primaryGreen() ? 'bg-green text-light hover:bg-pink' : '',
+    secondaryGreen()
+      ? 'border border-green text-green hover:border-pink hover:text-pink'
+      : '',
     disabled() ? 'opacity-50 cursor-not-allowed pointer-events-none' : ''
   ]"
 >
@@ -19,6 +29,5 @@
       aria-hidden="true"
     ></mat-icon>
     }
-
   </span>
 </button>
