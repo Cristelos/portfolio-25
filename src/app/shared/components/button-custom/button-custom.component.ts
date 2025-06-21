@@ -28,4 +28,5 @@ export class ButtonCustomComponent {
   public disabled = input<boolean>(false);
   public routerLink = input<string>('');
   public buttonText = input<string>('');
+  public srcLink = input<string>('');
 }

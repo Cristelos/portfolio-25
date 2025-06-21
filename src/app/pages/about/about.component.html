@@ -1,4 +1,5 @@
-<div class="about bg-light py-20 pt-40 flex justify-center items-center">
+<!-- About section-->
+<section class="about bg-light py-20 pt-40 flex justify-center items-center">
   <div
     class="max-w-7xl w-full mx-auto px-4 lg:px-8 flex flex-col lg:flex-row gap-16 items-start"
   >
@@ -33,7 +34,9 @@
       <app-dots class="dots about-dots" />
     </div>
   </div>
-</div>
+</section>
+
+<!-- Skills section-->
 <section class="skills-section py-16 bg-blue text-light">
   <div class="max-w-7xl mx-auto px-4 lg:px-8">
     <div class="mx-auto mb-8">
@@ -42,31 +45,19 @@
       <app-wave />
     </div>
 
-    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 text-lg">
-      <span>- HTML5</span>
-      <span>- CSS3 / Sass</span>
-      <span>- JavaScript / TypeScript</span>
-
-      <span>- Angular</span>
-      <span>- RxJS</span>
-      <span>- Git / GitHub</span>
-
-      <span>- Figma</span>
-      <span>- Adobe Suite</span>
-      <span>- Terminal / CLI</span>
-
-      <!-- Metodologías y prácticas -->
-      <span>- Metodologías Ágiles</span>
-      <span>- Clean Code</span>
-
-      <!-- Soft skills -->
-      <span>- Trabajo en equipo</span>
-      <span>- Aprendizaje continuo</span>
+    <div
+      class="max-w-5xl grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 text-lg"
+    >
+      @if(skillList){ @for (skill of skillList; track skill.id) {
+      <div class="text-white text-center rounded-4xl text-sm p-2 w-fit">
+        <p>#{{ skill.name }}</p>
+      </div>
+      } }
     </div>
   </div>
 </section>
 
-<!--Timeline-->
+<!--Timeline section-->
 <div class="h-full flex flex-col justify-start items-center bg-white py-16">
   <div class="max-w-7xl mx-auto px-4 lg:px-8">
     <div class="flex flex-col justify-start items-center mb-9 mt-4">
