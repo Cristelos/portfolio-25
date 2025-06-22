@@ -29,4 +29,30 @@ export class ButtonCustomComponent {
   public routerLink = input<string>('');
   public buttonText = input<string>('');
   public srcLink = input<string>('');
+
+  public buttonClasses(): string[] {
+    return [
+      this.primaryPink()
+        ? 'bg-pink text-blue hover:bg-green cursor-pointer'
+        : '',
+      this.secondaryPink()
+        ? 'border border-pink text-pink hover:border-green hover:text-green cursor-pointer'
+        : '',
+      this.primaryBlue()
+        ? 'bg-blue text-pink hover:bg-pink cursor-pointer'
+        : '',
+      this.secondaryBlue()
+        ? 'border border-blue text-blue hover:border-pink hover:text-pink cursor-pointer'
+        : '',
+      this.primaryGreen()
+        ? 'bg-green text-light hover:bg-pink cursor-pointer'
+        : '',
+      this.secondaryGreen()
+        ? 'border border-green text-green hover:border-pink hover:text-pink cursor-pointer'
+        : '',
+      this.disabled()
+        ? 'opacity-50 cursor-not-allowed pointer-events-none'
+        : '',
+    ];
+  }
 }

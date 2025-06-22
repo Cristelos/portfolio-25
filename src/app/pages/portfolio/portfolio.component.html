@@ -1,1 +1,35 @@
-<p>portfolio works!</p>,
+<!-- portfolio section-->
+<section class="portfolio bg-pink py-20 pt-40 flex justify-center items-center">
+  <div
+    class="max-w-7xl w-full mx-auto px-4 lg:px-8 flex flex-col lg:flex-row gap-16 items-start"
+  >
+    <div class="text-light md:w-3xl p-4 relative">
+      <h1 class="text-4xl sm:text-5xl md:text-7xl lg:text-7xl xl:text-8xl">
+        Portfolio
+      </h1>
+      <!--Wave decorations-->
+      <app-wave
+        [colorBlue]="true"
+        [colorPink]="false"
+        class="portfolio-wave mt-2"
+      />
+    </div>
+
+    <div class="text-blue md:w-3xl">
+      <!--Adding some dots decorations-->
+      <app-dots
+        [colorBlue]="true"
+        [colorPink]="false"
+        class="dots portfolio-dots"
+      />
+    </div>
+  </div>
+</section>
+
+<section
+  class="portfolio bg-white py-20 pt-40 flex flex-col justify-center items-center"
+>
+  @for (project of projectsList; track project.id) {
+  <h3>{{ project.title }}</h3>
+  }
+</section>
