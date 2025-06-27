@@ -1,12 +1,13 @@
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { ButtonCustomComponent } from '../button-custom/button-custom.component';
-import { BadgeComponent } from "../badge/badge.component";
+import { BadgeComponent } from '../badge/badge.component';
 import { Category } from '../../models/project.model';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-card',
   standalone: true,
-  imports: [ButtonCustomComponent, BadgeComponent],
+  imports: [ButtonCustomComponent, BadgeComponent, MatIconModule],
   templateUrl: './card.component.html',
   styleUrl: './card.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,

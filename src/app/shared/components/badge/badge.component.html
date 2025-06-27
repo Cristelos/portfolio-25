@@ -1,11 +1,15 @@
-<h4 class="badge"
-    [ngClass]="[
-      categoryName() === 'HTML' ? 'text-blue bg-blue-light border' : '',
-      categoryName() === 'CSS' ? 'text-pink bg-pink-light border' : '',
-      categoryName() === 'Nodejs' ? 'text-green bg-green-light border' : '',
-      categoryName() === 'Javascript' ? 'text-mustard bg-mustard-light border' : '',
-      categoryName() === 'Angular' ? 'text-red bg-red-light border' : '',
-      categoryName() === 'React' ? 'text-pumpkin bg-pumpkin-light border' : '',
-    ]">
-    #{{ categoryName() }}
-  </h4>
+<h4
+  class="badge"
+  [ngClass]="[
+    categoryName() === 'HTML' ? 'text-blue bg-blue-light border' : '',
+    categoryName() === 'CSS' ? 'text-pink bg-pink-light border' : '',
+    categoryName() === 'Nodejs' ? 'text-green bg-green-light border' : '',
+    categoryName() === 'Javascript'
+      ? 'text-mustard bg-mustard-light border'
+      : '',
+    categoryName() === 'Angular' ? 'text-red bg-red-light border' : '',
+    categoryName() === 'React' ? 'text-pumpkin bg-pumpkin-light border' : '',
+  ]"
+>
+  #{{ categoryName() }}
+</h4>

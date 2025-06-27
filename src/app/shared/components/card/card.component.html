@@ -1,7 +1,15 @@
 <div class="maincontainer">
   <div class="front">
     <div class="image">
-      <img [src]="image()" [alt]="title()" />
+      @if (image()) {
+        <img [src]="image()" [alt]="title()" />
+      } @else {
+        <mat-icon
+          fontIcon="refresh"
+          class="material-icons-round animate-spin"
+          aria-hidden="true"
+        ></mat-icon>
+      }
     </div>
 
     <h3 class="title text-base font-medium mt-4">{{ title() }}</h3>
@@ -9,18 +17,17 @@
 
     <div class="flex flex-wrap gap-1">
       @if (category()) {
-          @for (cat of category(); track cat.id) {
-          <app-badge [categoryName]="cat.name"/>
+        @for (cat of category(); track cat.id) {
+          <app-badge [categoryName]="cat.name" />
         }
       }
     </div>
 
-   <app-button-custom
-          [buttonText]="'Ver más'"
-          [secondaryPink]="true"
-          [routerLink]="'/contact'"
-          class="mt-9"
+    <app-button-custom
+      [buttonText]="'Ver más'"
+      [secondaryPink]="true"
+      [routerLink]="'/contact'"
+      class="mt-9"
     />
-
   </div>
 </div>
