@@ -1,31 +1,81 @@
 <nav
-  class="bg-transparent text-light mix-blend-difference flex justify-between z-99 xl:fixed w-full px-5 md:px-20 py-6 font-semibold text-base"
+  class="bg-transparent text-blue xl:text-light xl:mix-blend-difference flex justify-between z-99 xl:fixed w-full px-5 md:px-20 py-6 font-semibold text-base relative"
 >
   <div class="name">
-    <a class="transition-all duration-300 hover:text-pink" routerLink="/"
+    <a
+      class="transition-all duration-300 text-lg lg:text-base hover:text-pink"
+      routerLink="/"
       >Patricia Fernández</a
     >
   </div>
 
-  <div class="title hidden md:block">
+  <div class="title hidden lg:block">
     <span>Frontend Developer</span>
   </div>
 
-  <div class="flex gap-4">
-    <a class="transition-all duration-300 hover:text-pink" routerLink="/"
-      >Home</a
+  <!-- Desktop links -->
+  <div class="hidden lg:block">
+    <div class="flex gap-4">
+      <a class="transition-all duration-300 hover:text-pink" routerLink="/"
+        >Home</a
+      >
+      <a class="transition-all duration-300 hover:text-pink" routerLink="/about"
+        >About</a
+      >
+      <a
+        class="transition-all duration-300 hover:text-pink"
+        routerLink="/portfolio"
+        >Portfolio</a
+      >
+      <a
+        class="transition-all duration-300 hover:text-pink"
+        routerLink="/contact"
+        >Contact</a
+      >
+    </div>
+  </div>
+
+  <!-- Mobile nav -->
+  <div class="block lg:hidden">
+    <input type="checkbox" id="menu-toggle" class="peer hidden" #menuToggle />
+
+    <label
+      for="menu-toggle"
+      class="menu-icon block cursor-pointer z-50 relative"
     >
-    <a class="transition-all duration-300 hover:text-pink" routerLink="/about"
-      >About</a
+      <span></span>
+      <span></span>
+      <span></span>
+    </label>
+
+    <div
+      class="max-h-0 overflow-hidden opacity-0 transition-all duration-500 ease-in-out peer-checked:max-h-[500px] peer-checked:opacity-100 absolute
+      top-full left-0 w-full bg-white shadow-md text-blue flex flex-col gap-8 px-5 py-40 text-lg font-medium z-40"
     >
-    <a
-      class="transition-all duration-300 hover:text-pink"
-      routerLink="/portfolio"
-      >Portfolio</a
-    >
-    <!-- <a class=" transition-all duration-300 hover:text-pink" routerLink="/resume">Resume</a> -->
-    <a class="transition-all duration-300 hover:text-pink" routerLink="/contact"
-      >Contact</a
-    >
+      <a
+        (click)="closeMenu()"
+        routerLink="/"
+        class="hover:text-pink transition-all duration-300"
+        >Home</a
+      >
+      <a
+        (click)="closeMenu()"
+        routerLink="/about"
+        class="hover:text-pink transition-all duration-300"
+        >About</a
+      >
+      <a
+        (click)="closeMenu()"
+        routerLink="/portfolio"
+        class="hover:text-pink transition-all duration-300"
+        >Portfolio</a
+      >
+      <a
+        (click)="closeMenu()"
+        routerLink="/contact"
+        class="hover:text-pink transition-all duration-300"
+        >Contact</a
+      >
+    </div>
   </div>
 </nav>

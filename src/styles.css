@@ -16,12 +16,12 @@
   --color-red-light: #ec0b433e;
   --color-mustard-light: #fed86640;
   --color-pumpkin-light: #fe812d39;
-}
-
-:root {
   /*Fonts*/
   --font-family-titles: "Poppins", sans-serif;
   --font-family-texts: "Hind", sans-serif;
+}
+
+:root {
 
   /*Web pallete colors*/
   --color-light: #ffeedd;
