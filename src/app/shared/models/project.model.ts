@@ -7,6 +7,7 @@ export interface Project {
   description: string;
   date: string;
   git: string;
+  layout?: { col: number; row: number };
 }
 
 export interface Category{

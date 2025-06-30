@@ -80,7 +80,7 @@
   </header>
 
   <!-- About me section-->
-  <div class="about bg-light py-20 h-dvh flex justify-center items-center">
+  <section class="about bg-light py-20 h-dvh flex justify-center items-center">
     <div
       class="max-w-7xl w-full mx-auto px-4 lg:px-8 flex flex-col lg:flex-row gap-16 items-start"
     >
@@ -121,10 +121,12 @@
         />
       </div>
     </div>
-  </div>
+  </section>
 
   <!-- Skills carrusell-->
-  <div class="skills bg-green h-40 flex flex-col justify-center items-center">
+  <section
+    class="skills bg-green h-40 flex flex-col justify-center items-center"
+  >
     <div
       class="w-full flex flex-row flex-nowrap justify-around gap-4 text-white px-4 lg:px-8"
     >
@@ -134,10 +136,12 @@
         <p>No hay iconos para mostrar</p>
       }
     </div>
-  </div>
+  </section>
 
   <!-- Recent projects-->
-  <div class="h-dvh flex justify-start items-center bg-white py-20">
+  <section
+    class="h-dvh flex flex-col justify-center items-center bg-white py-20"
+  >
     <div class="max-w-7xl mx-auto px-4 lg:px-8 projects relative">
       <div class="mb-10">
         <h2 class="text-3xl font-semibold text-blue">Recent Projects</h2>
@@ -147,13 +151,23 @@
 
       <!-- Proyects slider-->
       <app-slider [slides]="featuredProjects" />
+
       <!--Adding some dots decorations-->
       <app-dots class="dots projects-dots" />
     </div>
-  </div>
+
+    <div class="mt-9">
+      <app-button-custom
+        [buttonText]="'Ver proyectos'"
+        [icons]="'open_in_new'"
+        [secondaryBlue]="true"
+        [routerLink]="'/portfolio'"
+      />
+    </div>
+  </section>
 
   <!-- Contact-->
-  <div class="h-dvh flex justify-center items-center bg-blue text-light">
+  <section class="h-dvh flex justify-center items-center bg-blue text-light">
     <div
       class="contact relative max-w-7xl w-full mx-auto px-4 lg:px-8 flex flex-col gap-16 items-center"
     >
@@ -174,5 +188,5 @@
       <!--Adding some dots decorations-->
       <app-dots class="dots contact-dots" />
     </div>
-  </div>
+  </section>
 </div>

@@ -1,24 +1,24 @@
 .dots {
   position: absolute;
   z-index: 0;
-  /* opacity: 0.5; */
   pointer-events: none;
 }
 
 /* Header */
 .header {
   position: relative;
-}
-.rrss img {
-  width: 36px;
-  aspect-ratio: 1/1;
-  object-fit: contain;
-}
 
-.header-dots {
-  top: -32%;
-  left: -8%;
-  width: 300px;
+  .rrss img {
+    width: 36px;
+    aspect-ratio: 1/1;
+    object-fit: contain;
+  }
+
+  .header-dots {
+    top: -32%;
+    left: -8%;
+    width: 300px;
+  }
 }
 
 /* About me */
@@ -47,9 +47,9 @@
     width: 300px;
   }
   app-slider {
-  position: relative;
-  z-index: 10;
-}
+    position: relative;
+    z-index: 10;
+  }
 }
 
 /* Contact */

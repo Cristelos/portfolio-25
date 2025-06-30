@@ -7,7 +7,11 @@ import { MatIconModule } from '@angular/material/icon';
 @Component({
   selector: 'app-card',
   standalone: true,
-  imports: [ButtonCustomComponent, BadgeComponent, MatIconModule],
+  imports: [
+    // ButtonCustomComponent,
+    BadgeComponent,
+    MatIconModule,
+  ],
   templateUrl: './card.component.html',
   styleUrl: './card.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,

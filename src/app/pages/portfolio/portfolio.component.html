@@ -1,35 +1,68 @@
 <!-- portfolio section-->
-<section class="portfolio bg-pink py-20 pt-40 flex justify-center items-center">
+<section
+  class="portfolio bg-white py-20 pt-40 flex justify-center items-center"
+>
   <div
     class="max-w-7xl w-full mx-auto px-4 lg:px-8 flex flex-col lg:flex-row gap-16 items-start"
   >
-    <div class="text-light md:w-3xl p-4 relative">
+    <div class="text-blue md:w-3xl p-4 relative">
       <h1 class="text-4xl sm:text-5xl md:text-7xl lg:text-7xl xl:text-8xl">
         Portfolio
       </h1>
       <!--Wave decorations-->
-      <app-wave
-        [colorBlue]="true"
-        [colorPink]="false"
-        class="portfolio-wave mt-2"
-      />
+      <app-wave [colorPink]="true" class="portfolio-wave mt-2" />
     </div>
 
-    <div class="text-blue md:w-3xl">
-      <!--Adding some dots decorations-->
-      <app-dots
-        [colorBlue]="true"
-        [colorPink]="false"
-        class="dots portfolio-dots"
-      />
+    <div class="text-blue hidden md:block md:w-3xl">
+      <!-- Dots decorations-->
+      <app-dots [colorPink]="true" class="dots portfolio-dots" />
     </div>
   </div>
 </section>
 
 <section
-  class="portfolio bg-white py-20 pt-40 flex flex-col justify-center items-center"
+  class="portfolio bg-white py-20 pt-40 flex flex-col justify-center items-center gap-9"
 >
-  @for (project of projectsList; track project.id) {
-    <h3>{{ project.title }}</h3>
-  }
+  <div
+    class="max-w-7xl w-full px-4 lg:px-8 flex flex-col lg:flex-row lg:flex-wrap gap-6"
+  >
+    @for (project of projectsList(); track project.id) {
+      <div
+        class="w-full lg:w-xl bg-white border border-gray-200 p-4 rounded-xs overflow-hidden transition hover:scale-[1.02] cursor-pointer flex flex-col lg:flex-row lg:justify-center lg:items-center gap-6"
+      >
+        <!-- Imagen -->
+        <div class="w-full lg:w-80">
+          <img
+            [src]="project.image"
+            [alt]="project.title"
+            class="w-full h-48 lg:h-70 object-cover rounded-xs border border-gray-100"
+          />
+        </div>
+
+        <!-- Contenido -->
+        <div class="w-full lg:w-2/3 flex flex-col lg:h-60">
+          <div class="lg:flex-1">
+            <h3 class="text-lg font-semibold mb-1">{{ project.title }}</h3>
+
+            <!-- Badges -->
+            <div class="flex flex-wrap gap-1 mb-4">
+              @if (project.category) {
+                @for (cat of project.category; track cat.id) {
+                  <app-badge [categoryName]="cat.name" />
+                }
+              }
+            </div>
+          </div>
+
+          <app-button-custom
+            [buttonText]="'Ver proyecto'"
+            [secondaryBlue]="true"
+            [routerLink]="'/portfolio'"
+            class="mt-10"
+            (click)="openDialog(project)"
+          />
+        </div>
+      </div>
+    }
+  </div>
 </section>

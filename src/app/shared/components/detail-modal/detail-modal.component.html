@@ -1,0 +1,59 @@
+<mat-dialog-content>
+  <div
+    class="w-full bg-white border border-gray-200 p-4 rounded-xs overflow-hidden flex flex-col"
+  >
+    <!-- Imagen -->
+    <div class="w-full">
+      <img
+        [src]="project.image"
+        [alt]="project.title"
+        class="w-full h-48 lg:h-60 object-cover rounded-xs border border-gray-100"
+      />
+    </div>
+
+    <!-- Contenido -->
+    <div class="w-full flex flex-col mt-9">
+        <h3 class="text-lg font-semibold mb-1">{{ project.title }}</h3>
+
+        <!-- Badges -->
+        <div class="flex flex-wrap gap-1 mb-4">
+          @if (project.category) {
+            @for (cat of project.category; track cat.id) {
+              <app-badge [categoryName]="cat.name" />
+            }
+          }
+        </div>
+
+        <!-- Description-->
+        <p>{{ project.description }}</p>
+
+        <!-- External links-->
+        <div class="flex flex-wrap">
+          <app-button-custom
+            [buttonText]="'Github'"
+            [secondaryGreen]="true"
+            [srcLink]="project.git"
+            class="mt-10"
+            mat-dialog-close
+          />
+          <app-button-custom
+            [buttonText]="'Abrir'"
+            [secondaryGreen]="true"
+            [srcLink]="project.url"
+            class="mt-10"
+            mat-dialog-close
+          />
+        </div>
+
+    </div>
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <app-button-custom
+    [buttonText]="'Cerrar'"
+    [primaryBlue]="true"
+    [routerLink]="'/portfolio'"
+    class="mt-10"
+    mat-dialog-close
+  />
+</mat-dialog-actions>

@@ -39,7 +39,7 @@ export class ButtonCustomComponent {
         ? 'border border-pink text-pink hover:border-green hover:text-green cursor-pointer'
         : '',
       this.primaryBlue()
-        ? 'bg-blue text-pink hover:bg-pink cursor-pointer'
+        ? 'bg-blue text-white hover:bg-pink cursor-pointer'
         : '',
       this.secondaryBlue()
         ? 'border border-blue text-blue hover:border-pink hover:text-pink cursor-pointer'
