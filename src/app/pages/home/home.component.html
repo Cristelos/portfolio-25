@@ -7,7 +7,7 @@
       class="max-w-7xl w-full px-4 mt-16 lg:px-8 text-center flex flex-col items-center gap-y-6 relative"
     >
       <!--Adding some dots decorations-->
-      <app-dots class="dots header-dots" />
+      <app-dots class="dots header-dot hidden md:blocks" />
 
       <div class="text-light z-50 text-center flex flex-col items-center pb-8">
         <h1 class="text-4xl sm:text-5xl md:text-7xl lg:text-7xl xl:text-8xl">
@@ -80,11 +80,11 @@
   </header>
 
   <!-- About me section-->
-  <section class="about bg-light py-20 h-dvh flex justify-center items-center">
+  <section class="about bg-light py-20 lg:h-dvh flex justify-center items-center">
     <div
       class="max-w-7xl w-full mx-auto px-4 lg:px-8 flex flex-col lg:flex-row gap-16 items-start"
     >
-      <div class="w-3xl p-4 relative">
+      <div class="lg:w-3xl p-4 relative">
         <img
           src="https://res.cloudinary.com/dgguxcib9/image/upload/v1750173872/portrait-background_x8uf8x.png"
           alt="Self portrait"
@@ -93,10 +93,10 @@
         />
 
         <!--Adding some dots decorations-->
-        <app-dots class="dots about-dots" />
+        <app-dots class="dots about-dots hidden md:block" />
       </div>
 
-      <div class="text-blue w-3xl">
+      <div class="text-blue lg:w-3xl">
         <h2 class="text-3xl font-semibold">About me</h2>
         <!--Wave decorations-->
         <app-wave class="header-wave mt-2" />
@@ -143,7 +143,7 @@
       <app-slider [slides]="featuredProjects" />
 
       <!--Adding some dots decorations-->
-      <app-dots class="dots projects-dots" />
+      <app-dots class="dots projects-d hidden md:blockots" />
     </div>
 
     <div class="mt-9">
@@ -166,7 +166,7 @@
         <!--Wave decorations-->
         <app-wave />
       </div>
-      <p class="text-xl">
+      <p class="text-xl text-center">
         ¿Te apetece saber algo más? Escríbeme un correo y charlemos.
       </p>
       <app-button-custom
@@ -176,7 +176,7 @@
         [srcLink]="'mailto:patriciafernandezruibal@gmail.com'"
       />
       <!--Adding some dots decorations-->
-      <app-dots class="dots contact-dots" />
+      <app-dots class="dots contact-dots hidden md:blockts" />
     </div>
   </section>
 </div>

@@ -29,6 +29,12 @@
     top: -41%;
     left: -22%;
     width: 250px;
+
+    @media (max-width: 768px) {
+      top: -10%;
+      left: 0;
+      width: 150px;
+    }
   }
 
   .about-portrait {
@@ -45,6 +51,13 @@
     top: 50%;
     left: 75%;
     width: 300px;
+
+    @media (max-width: 768px) {
+      top: -11%;
+      left: -8%;
+      /* transform: translateX(-50%); */
+      /* width: 200px;*/
+    }
   }
   app-slider {
     position: relative;
@@ -60,5 +73,11 @@
     top: 0;
     left: -2%;
     width: 250px;
+
+    @media (max-width: 768px) {
+      top: 5%;
+      left: 0;
+      width: 150px;
+    }
   }
 }

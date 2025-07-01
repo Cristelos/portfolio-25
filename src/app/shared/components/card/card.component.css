@@ -2,9 +2,12 @@
   width: 302px;
   margin: 10px;
 
+  @media (max-width: 768px) {
+     width: 200px;
+  }
+
   .front {
     background-color: #fff;
-    width: 302px;
     height: 100%;
     border: 1px solid #ebebeb;
     border-radius: 4px;

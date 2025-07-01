@@ -3,11 +3,15 @@ import {
   ChangeDetectionStrategy,
   Component,
   input,
+  signal,
+  effect,
+  inject,
+  computed,
+  WritableSignal,
 } from '@angular/core';
 import { CardComponent } from '../card/card.component';
-import { Project } from '../../models/project.model';
-
 import { MatIconModule } from '@angular/material/icon';
+import { Project } from '../../models/project.model';
 
 @Component({
   selector: 'app-slider',
@@ -19,69 +23,66 @@ import { MatIconModule } from '@angular/material/icon';
 })
 export class SliderComponent {
   public slides = input<Project[]>([]);
-  public slideIndex = 0;
-  private readonly SLIDES_PER_VIEW = 3;
+  public slideIndex = signal(0);
+
+  // Signal reactiva para el número de slides por vista
+  public slidesPerView: WritableSignal<number> = signal(this.getSlidesPerView());
+
+  constructor() {
+    // Efecto que escucha cambios en el tamaño de pantalla
+    effect(() => {
+      const update = () => {
+        this.slidesPerView.set(this.getSlidesPerView());
+      };
+
+      window.addEventListener('resize', update);
+      return () => window.removeEventListener('resize', update);
+    });
+  }
+
+  private getSlidesPerView(): number {
+    const width = window.innerWidth;
+    if (width >= 1024) return 3;
+    if (width >= 768) return 2;
+    return 1;
+  }
 
   getVisibleSlides(): Project[] {
-    const allSlides = this.slides();
-    if (!allSlides.length) {
-      return [];
-    }
-
-    const start = this.slideIndex;
-    const end = start + this.SLIDES_PER_VIEW;
-
-    let visible = allSlides.slice(start, end);
-
-    return visible;
+    const all = this.slides();
+    const start = this.slideIndex();
+    const end = start + this.slidesPerView();
+    return all.slice(start, end);
   }
 
   getIndicatorSlides(): any[] {
-    const allSlides = this.slides();
-    if (!allSlides.length) {
-      return [];
-    }
-
-    const numberOfGroups = Math.ceil(allSlides.length / this.SLIDES_PER_VIEW);
-    return new Array(numberOfGroups);
+    const total = this.slides().length;
+    const perView = this.slidesPerView();
+    return new Array(Math.ceil(total / perView));
   }
 
   changeSlide(n: number) {
-    const allSlides = this.slides();
-    if (!allSlides.length) return;
+    const total = this.slides().length;
+    const perView = this.slidesPerView();
+    let newIndex = this.slideIndex() + n * perView;
 
-    const totalGroups = Math.ceil(allSlides.length / this.SLIDES_PER_VIEW);
-
-    this.slideIndex =
-      (this.slideIndex + n * this.SLIDES_PER_VIEW + allSlides.length) %
-      allSlides.length;
-
-    if (this.slideIndex < 0) {
-      this.slideIndex =
-        allSlides.length -
-        (allSlides.length % this.SLIDES_PER_VIEW || this.SLIDES_PER_VIEW);
-    } else if (this.slideIndex >= allSlides.length) {
-      this.slideIndex = 0;
+    if (newIndex < 0) {
+      newIndex = total - (total % perView || perView);
+    } else if (newIndex >= total) {
+      newIndex = 0;
     }
+
+    this.slideIndex.set(newIndex);
   }
 
   goToSlide(groupIndex: number) {
-    const allSlides = this.slides();
-    if (!allSlides.length) return;
-
-    this.slideIndex = groupIndex * this.SLIDES_PER_VIEW;
-
-    if (this.slideIndex >= allSlides.length) {
-      this.slideIndex =
-        allSlides.length -
-        (allSlides.length % this.SLIDES_PER_VIEW || this.SLIDES_PER_VIEW);
-    }
+    const perView = this.slidesPerView();
+    const index = groupIndex * perView;
+    this.slideIndex.set(
+      Math.min(index, this.slides().length - perView)
+    );
   }
 
   getCurrentGroupIndex(): number {
-    if (!this.slides().length) {
-      return 0; // O manejar según necesites si no hay slides
-    }
-    return Math.floor(this.slideIndex / this.SLIDES_PER_VIEW);
+    return Math.floor(this.slideIndex() / this.slidesPerView());
   }
 }
