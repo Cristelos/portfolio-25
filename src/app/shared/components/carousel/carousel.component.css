@@ -1,0 +1,9 @@
+/* carousel.component.css */
+.carousel-track {
+  will-change: transform;
+}
+
+img {
+  flex-shrink: 0;
+  /* transition: transform 0.3s ease; */ /* Opcional, si no lo manejas con Tailwind */
+}

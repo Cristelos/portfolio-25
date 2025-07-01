@@ -124,19 +124,9 @@
   </section>
 
   <!-- Skills carrusell-->
-  <section
-    class="skills bg-green h-40 flex flex-col justify-center items-center"
-  >
-    <div
-      class="w-full flex flex-row flex-nowrap justify-around gap-4 text-white px-4 lg:px-8"
-    >
-      @for (skill of skills; track $index) {
-        <img [src]="skill.icon" [alt]="skill.name" class="w-14 h-w-14" />
-      } @empty {
-        <p>No hay iconos para mostrar</p>
-      }
-    </div>
-  </section>
+<section class="skills bg-green h-40 flex justify-center items-center overflow-hidden">
+ <app-carousel/>
+</section>
 
   <!-- Recent projects-->
   <section

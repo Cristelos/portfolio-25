@@ -1,0 +1,35 @@
+<div class="overflow-hidden w-full bg-green py-4">
+  <div #carousel class="carousel-track flex gap-15 w-max will-change-transform">
+    @for (skill of skills(); track skill.name) {
+      <img
+        [src]="skill.icon"
+        [alt]="skill.name"
+        class="w-14 h-14 object-contain"
+      />
+    }
+
+    @for (skill of skills(); track skill.name) {
+      <img
+        [src]="skill.icon"
+        [alt]="skill.name"
+        class="w-14 h-14 object-contain"
+      />
+    }
+
+    @for (skill of skills(); track skill.name) {
+      <img
+        [src]="skill.icon"
+        [alt]="skill.name"
+        class="w-14 h-14 object-contain"
+      />
+    }
+
+    @for (skill of skills(); track skill.name) {
+      <img
+        [src]="skill.icon"
+        [alt]="skill.name"
+        class="w-14 h-14 object-contain"
+      />
+    }
+  </div>
+</div>
