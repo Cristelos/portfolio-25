@@ -13,6 +13,10 @@
     top: 23%;
     left: 62%;
     width: 250px;
+    @media (min-width: 768px) and (max-width: 1023px) {
+      top: 35%;
+      left: -12%;
+    }
   }
 
   .about-portrait {
@@ -115,7 +119,9 @@
     top: 4px;
     left: 0;
     width: 15px;
-    transition: background 0.3s ease-in-out, border 0.3s ease-in-out;
+    transition:
+      background 0.3s ease-in-out,
+      border 0.3s ease-in-out;
   }
   &:after {
     content: "";
