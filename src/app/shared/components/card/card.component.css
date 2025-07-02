@@ -1,5 +1,5 @@
 .maincontainer {
-  width: 302px;
+  width: 250px;
   margin: 10px;
 
   @media (max-width: 768px) {

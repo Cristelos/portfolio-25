@@ -7,7 +7,7 @@
       class="max-w-7xl w-full px-4 mt-16 lg:px-8 text-center flex flex-col items-center gap-y-6 relative"
     >
       <!--Adding some dots decorations-->
-      <app-dots class="dots header-dot hidden md:blocks" />
+      <app-dots class="dots header-dot hidden lg:block" />
 
       <div class="text-light z-50 text-center flex flex-col items-center pb-8">
         <h1 class="text-4xl sm:text-5xl md:text-7xl lg:text-7xl xl:text-8xl">
@@ -93,7 +93,7 @@
         />
 
         <!--Adding some dots decorations-->
-        <app-dots class="dots about-dots hidden md:block" />
+        <app-dots class="dots about-dots hidden lg:block" />
       </div>
 
       <div class="text-blue lg:w-3xl">
@@ -132,7 +132,7 @@
   <section
     class="h-dvh flex flex-col justify-center items-center bg-white py-20"
   >
-    <div class="max-w-7xl mx-auto px-4 lg:px-8 projects relative">
+    <div class="lg:max-w-8xl mx-auto px-4 lg:px-8 projects relative">
       <div class="mb-10">
         <h2 class="text-3xl font-semibold text-blue">Recent Projects</h2>
         <!--Wave decorations-->
@@ -143,7 +143,7 @@
       <app-slider [slides]="featuredProjects" />
 
       <!--Adding some dots decorations-->
-      <app-dots class="dots projects-d hidden md:blockots" />
+      <app-dots class="dots projects-dots hidden lg:block" />
     </div>
 
     <div class="mt-9">
@@ -176,7 +176,7 @@
         [srcLink]="'mailto:patriciafernandezruibal@gmail.com'"
       />
       <!--Adding some dots decorations-->
-      <app-dots class="dots contact-dots hidden md:blockts" />
+      <app-dots class="dots contact-dots hidden lg:block" />
     </div>
   </section>
 </div>

@@ -14,7 +14,7 @@
     object-fit: contain;
   }
 
-  .header-dots {
+  .header-dot {
     top: -32%;
     left: -8%;
     width: 300px;
@@ -49,14 +49,12 @@
 
   .projects-dots {
     top: 50%;
-    left: 75%;
+    left: 2%;
     width: 300px;
 
     @media (max-width: 768px) {
       top: -11%;
       left: -8%;
-      /* transform: translateX(-50%); */
-      /* width: 200px;*/
     }
   }
   app-slider {
