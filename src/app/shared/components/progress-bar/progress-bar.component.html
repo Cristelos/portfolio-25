@@ -1,5 +1,5 @@
 <div
-  class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6 md:ml-4 overflow-x-hidden p-4"
+  class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-6 md:ml-4 overflow-x-hidden p-4"
 >
   @for (skill of skillList; track skill.id) {
     <div
@@ -9,7 +9,7 @@
       <div class="progress-fill bg-pink-light h-3 rounded-full">
         <div
           #progressBarFill
-          class="progress-fill bg-pink h-3 rounded-full"
+          class="progress-fill bg-pink h-3 rounded-full w-0"
           [attr.data-level]="skill.level"
         ></div>
       </div>

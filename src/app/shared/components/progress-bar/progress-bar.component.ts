@@ -1,4 +1,3 @@
-import { CommonModule, isPlatformBrowser } from '@angular/common';
 import {
   AfterViewInit,
   ChangeDetectionStrategy,
@@ -10,6 +9,7 @@ import {
   QueryList,
   ViewChildren,
 } from '@angular/core';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { gsap } from 'gsap';
 import { Skills } from '../../models/skill.model';
 import { skills } from '../../data/skills.data';
@@ -24,44 +24,51 @@ import { skills } from '../../data/skills.data';
 export class ProgressBarComponent implements AfterViewInit {
   public skillList: Skills[] = skills;
 
-  @ViewChildren('progressBarFill') progressFillBars!: QueryList<
-    ElementRef<HTMLDivElement>
-  >;
+  @ViewChildren('progressBarFill') progressFillBars!: QueryList<ElementRef<HTMLDivElement>>;
 
-  private zone = inject(NgZone); // Inyecta NgZone
-  private platformId = inject(PLATFORM_ID); // Inyecta PLATFORM_ID
+  // Injectamos esto para que no rompa por terminal
+  private zone = inject(NgZone);
+  private platformId = inject(PLATFORM_ID);
+
+  private animated = false;
 
   ngAfterViewInit(): void {
-    if (isPlatformBrowser(this.platformId)) {
-      this.zone.runOutsideAngular(() => {
-        setTimeout(() => {
-          if (this.progressFillBars.length > 0) {
-            this.animatedProgressBar();
-          } else {
-            console.warn(
-              'No se encontraron las barras de progreso después del timeout en ngAfterViewInit.',
-            );
-          }
-        }, 50);
+    if (!isPlatformBrowser(this.platformId)) return;
+
+    this.zone.runOutsideAngular(() => {
+      const observer = new IntersectionObserver(
+        (entries) => {
+
+          entries.forEach((entry) => {
+            if (entry.isIntersecting && !this.animated) {
+              this.animated = true;
+              this.animateProgressBars();
+              observer.disconnect();
+            }
+          });
+        },
+        { threshold: 0.4 }
+      );
+
+      this.progressFillBars.forEach((bar) => {
+        observer.observe(bar.nativeElement);
       });
-    }
+    });
   }
 
-  animatedProgressBar(): void {
+  private animateProgressBars(): void {
     this.progressFillBars.forEach((barRef, index) => {
-      const fillEl = barRef.nativeElement;
-      const level = parseInt(fillEl.getAttribute('data-level') || '0', 10);
+      const el = barRef.nativeElement;
+      const level = parseInt(el.getAttribute('data-level') || '0', 10);
 
-      if (!fillEl.parentElement || fillEl.parentElement.offsetWidth === 0) {
-        console.warn(
-          `El elemento padre de la barra de progreso para la habilidad ${this.skillList[index]?.name} no tiene ancho. Se omite la animación.`,
-        );
+      if (!el.parentElement || el.parentElement.offsetWidth === 0) {
+        console.warn(`Sin ancho para animar: ${this.skillList[index]?.name}`);
         return;
       }
 
-      gsap.set(fillEl, { width: '0%' });
+      gsap.set(el, { width: '0%' });
 
-      gsap.to(fillEl, {
+      gsap.to(el, {
         width: `${level}%`,
         duration: 1.5,
         delay: index * 0.15,
