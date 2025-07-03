@@ -1,18 +1,19 @@
 <div
-  class="w-full max-w-7xl mx-auto flex items-center relative"
+  class="w-full max-w-7xl mx-auto flex items-center justify-center gap-4 relative"
 >
   <button
     (click)="changeSlide(-1)"
-    class="text-3xl text-blue font-bold cursor-pointer hover:text-pink flex-shrink-0 mr-4"
-    [disabled]="isAtStart()"
+    class="text-3xl text-blue font-bold cursor-pointer hover:text-pink"
   >
-    <mat-icon fontIcon="arrow_back_ios" inline class="material-icons-round" aria-hidden="true"></mat-icon>
+    <mat-icon
+      fontIcon="arrow_back_ios"
+      inline
+      class="material-icons-round"
+      aria-hidden="true"
+    ></mat-icon>
   </button>
 
-  <div
-    class="flex-grow flex gap-4 flex-wrap"
-    [ngClass]="{ 'justify-center': slidesPerView() === 1 }"
-  >
+  <div class="w-full flex justify-center gap-4 flex-wrap">
     @for (slide of getVisibleSlides(); track slide.id) {
       <app-card
         [image]="slide.image"
@@ -20,20 +21,20 @@
         [category]="slide.category"
         [date]="slide.date"
         [description]="slide.description"
-        class="w-full sm:w-1/2 md:w-1/3 lg:w-1/4
-               opacity-0 /* Estado inicial oculto */
-               animate-fade-in-up /* Clase de animación personalizada */
-               "
       />
     }
   </div>
 
   <button
     (click)="changeSlide(1)"
-    class="text-3xl text-blue font-bold cursor-pointer hover:text-pink flex-shrink-0 ml-4"
-    [disabled]="isAtEnd()"
+    class="text-3xl text-blue font-bold cursor-pointer hover:text-pink"
   >
-    <mat-icon fontIcon="arrow_forward_ios" inline class="material-icons-round" aria-hidden="true"></mat-icon>
+    <mat-icon
+      fontIcon="arrow_forward_ios"
+      inline
+      class="material-icons-round"
+      aria-hidden="true"
+    ></mat-icon>
   </button>
 </div>
 
