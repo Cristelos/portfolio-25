@@ -1,21 +1,19 @@
+// app-slider.component.ts
+
 import {
   Component,
   ChangeDetectionStrategy,
   input,
   signal,
   WritableSignal,
-  ViewChild,
-  ElementRef,
   inject,
-  effect,
   PLATFORM_ID,
-  AfterViewInit,
-  NgZone,
+  OnInit,
+  DestroyRef,
 } from '@angular/core';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { CardComponent } from '../card/card.component';
 import { MatIconModule } from '@angular/material/icon';
-import { gsap } from 'gsap';
 import { Project } from '../../models/project.model';
 
 @Component({
@@ -23,46 +21,50 @@ import { Project } from '../../models/project.model';
   standalone: true,
   imports: [CommonModule, CardComponent, MatIconModule],
   templateUrl: './slider.component.html',
-  styleUrl: './slider.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SliderComponent implements AfterViewInit {
+export class SliderComponent implements OnInit {
   public slides = input<Project[]>([]);
   public slideIndex = signal(0);
   public slidesPerView: WritableSignal<number> = signal(1);
 
-  @ViewChild('sliderTrack', { static: false })
-  sliderTrack!: ElementRef<HTMLDivElement>;
-
-  // Injectamos esto para que no rompa por terminal
-  private zone = inject(NgZone);
   private platformId = inject(PLATFORM_ID);
+  private destroyRef = inject(DestroyRef);
+  private resizeObserver: ResizeObserver | undefined;
 
-  constructor() {
+  ngOnInit(): void {
     if (isPlatformBrowser(this.platformId)) {
-      this.slidesPerView.set(this.getSlidesPerView());
+      this.slidesPerView.set(this.getSlidesPerViewByWindowWidth());
 
-      effect(() => {
-        const update = () => {
-          this.slidesPerView.set(this.getSlidesPerView());
-          this.animateSlide(); // Realinea tras resize
-        };
-        window.addEventListener('resize', update);
-        return () => window.removeEventListener('resize', update);
+      this.resizeObserver = new ResizeObserver(() => {
+        this.handleResize();
+      });
+      this.resizeObserver.observe(document.body);
+
+      this.destroyRef.onDestroy(() => {
+        if (this.resizeObserver) {
+          this.resizeObserver.disconnect();
+        }
       });
     }
   }
 
-  ngAfterViewInit(): void {
-    this.zone.runOutsideAngular(() => {
-      setTimeout(() => {
-        this.animateSlide();
-      }, 50); // Pequeño retardo
-    });
+  private handleResize(): void {
+    const prevSlidesPerView = this.slidesPerView();
+    const newSlidesPerView = this.getSlidesPerViewByWindowWidth();
+
+    if (prevSlidesPerView !== newSlidesPerView) {
+      this.slidesPerView.set(newSlidesPerView);
+
+      const total = this.slides().length;
+      const maxIndex = Math.max(0, total - newSlidesPerView);
+      if (this.slideIndex() > maxIndex) {
+        this.slideIndex.set(maxIndex);
+      }
+    }
   }
 
-  private getSlidesPerView(): number {
-    if (!isPlatformBrowser(this.platformId)) return 1;
+  private getSlidesPerViewByWindowWidth(): number {
     const width = window.innerWidth;
     if (width >= 1280) return 4;
     if (width >= 1024) return 3;
@@ -70,56 +72,65 @@ export class SliderComponent implements AfterViewInit {
     return 1;
   }
 
-  changeSlide(direction: number) {
+  public getVisibleSlides(): Project[] {
     const total = this.slides().length;
     const perView = this.slidesPerView();
+    const startIndex = this.slideIndex();
+
+    if (total === 0 || perView === 0) {
+      return [];
+    }
+
+    const endIndex = Math.min(startIndex + perView, total);
+    return this.slides().slice(startIndex, endIndex);
+  }
+
+  changeSlide(direction: number): void {
+    const total = this.slides().length;
+    const perView = this.slidesPerView();
+    if (total === 0) return;
+
     let newIndex = this.slideIndex() + direction * perView;
 
+    const maxIndex = Math.max(0, total - perView);
     if (newIndex < 0) {
-      newIndex = total - perView;
-    } else if (newIndex + perView > total) {
+      newIndex = maxIndex;
+    } else if (newIndex > maxIndex) {
       newIndex = 0;
     }
 
     this.slideIndex.set(newIndex);
-    this.animateSlide();
   }
 
-  animateSlide() {
-    if (!this.sliderTrack || !this.slides().length) return;
+  goToSlide(groupIndex: number): void {
+    const perView = this.slidesPerView();
+    const total = this.slides().length;
+    const maxIndex = Math.max(0, total - perView);
 
-    const trackEl = this.sliderTrack.nativeElement;
-    const slideEl = trackEl.querySelector('.slide') as HTMLElement;
-
-    if (!slideEl) {
-      console.warn('No se encontró ningún elemento con clase .slide');
-      return;
-    }
-
-    const slideWidth = slideEl.offsetWidth;
-    const offset = -(this.slideIndex() * slideWidth);
-
-    gsap.to(trackEl, {
-      x: offset,
-      duration: 2.5,
-      ease: 'power1.out', // más suave que power2
-    });
+    let newIndex = groupIndex * perView;
+    this.slideIndex.set(Math.min(newIndex, maxIndex));
   }
 
   getIndicatorSlides(): any[] {
     const total = this.slides().length;
     const perView = this.slidesPerView();
+    if (total === 0 || perView === 0) return [];
     return new Array(Math.ceil(total / perView));
   }
 
-  goToSlide(groupIndex: number) {
+  getCurrentGroupIndex(): number {
     const perView = this.slidesPerView();
-    const index = groupIndex * perView;
-    this.slideIndex.set(Math.min(index, this.slides().length - perView));
-    this.animateSlide();
+    if (perView === 0) return 0;
+    return Math.floor(this.slideIndex() / perView);
   }
 
-  getCurrentGroupIndex(): number {
-    return Math.floor(this.slideIndex() / this.slidesPerView());
+  isAtStart(): boolean {
+    return this.slideIndex() === 0;
+  }
+
+  isAtEnd(): boolean {
+    const total = this.slides().length;
+    const perView = this.slidesPerView();
+    return this.slideIndex() + perView >= total;
   }
 }
