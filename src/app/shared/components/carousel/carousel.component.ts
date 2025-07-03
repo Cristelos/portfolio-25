@@ -51,28 +51,21 @@ export class CarouselComponent implements AfterViewInit {
 
         const originalItemsCount = this.skills().length;
         let widthOfOneSet = 0;
-
-        // Calcula el ancho exacto del primer set de iconos
         for (let i = 0; i < originalItemsCount; i++) {
           widthOfOneSet += items[i].offsetWidth;
           if (i < originalItemsCount - 1) {
-            widthOfOneSet += 15; // Añade el gap
+            widthOfOneSet += 15;
           }
         }
 
         console.log('Ancho de un set calculado:', widthOfOneSet);
 
-        // Crea un timeline con `repeat: -1` y un evento `onComplete`
         const tl = gsap.timeline({ repeat: -1, ease: 'none' });
 
-        // Anima la pista la distancia del primer set
         tl.to(carouselTrack, {
           x: -widthOfOneSet,
-          duration: 5, // Ajusta la duración para la velocidad
+          duration: 5,
           ease: 'none',
-          // Al completarse el movimiento, GSAP reinicia la posición
-          // a un valor equivalente a 0 para que el bucle sea perfecto.
-          // Como los elementos están duplicados, este "salto" no se nota.
           modifiers: {
             x: gsap.utils.unitize((x) => parseFloat(x) % widthOfOneSet),
           },

@@ -15,9 +15,28 @@
 
     <div class="text-blue hidden md:block md:w-3xl">
       <!-- Dots decorations-->
-      <app-dots [colorPink]="true" class="dots portfolio-dots hidden lg:block" />
+      <app-dots
+        [colorPink]="true"
+        class="dots portfolio-dots hidden lg:block"
+      />
     </div>
   </div>
+</section>
+
+<section class="filter max-w-3xl w-full mx-auto px-4 lg:px-8 flex flex-row flex-wrap justify-center gap-4">
+  <app-badge
+    [categoryName]="'Todos'"
+    (click)="selectCategory(null)"
+    class="cursor-pointer transition-all duration-200"
+  />
+
+  @for (cat of uniqueCategories(); track cat.id) {
+    <app-badge
+      [categoryName]="cat.name"
+      (click)="selectCategory(cat.id)"
+      class="cursor-pointer transition-all duration-200"
+    />
+  }
 </section>
 
 <section
@@ -26,7 +45,7 @@
   <div
     class="max-w-7xl w-full px-4 lg:px-8 flex flex-col lg:flex-row lg:flex-wrap gap-6"
   >
-    @for (project of projectsList(); track project.id) {
+    @for (project of filteredProjects(); track project.id) {
       <div
         class="w-full lg:w-xl bg-white border border-gray-200 p-4 rounded-xs overflow-hidden transition hover:scale-[1.02] hover:border-blue cursor-pointer flex flex-col lg:flex-row lg:justify-center lg:items-center gap-6"
       >

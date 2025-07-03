@@ -1,21 +1,20 @@
 <nav
   class="bg-transparent text-blue xl:text-light xl:mix-blend-difference flex justify-between z-99 xl:fixed w-full px-5 md:px-20 py-6 font-semibold text-base relative"
 >
-  <div class="name">
-    <a
+  <div #name class="name flex-shrink-0"> <a
       class="transition-all duration-300 text-lg lg:text-base hover:text-pink"
       routerLink="/"
       >Patricia Fernández</a
     >
   </div>
 
-  <div class="title hidden lg:block">
+  <div #title class="title hidden lg:block">
     <span>Frontend Developer</span>
   </div>
 
   <!-- Desktop links -->
   <div class="hidden lg:block">
-    <div class="flex gap-4">
+    <div #desktopMenu class="flex gap-4">
       <a class="transition-all duration-300 hover:text-pink" routerLink="/"
         >Home</a
       >
@@ -36,7 +35,7 @@
   </div>
 
   <!-- Mobile nav -->
-  <div class="block lg:hidden">
+  <div  #mobileMenu class="block lg:hidden">
     <input type="checkbox" id="menu-toggle" class="peer hidden" #menuToggle />
 
     <label
@@ -49,8 +48,7 @@
     </label>
 
     <div
-      class="max-h-0 overflow-hidden opacity-0 transition-all duration-500 ease-in-out peer-checked:max-h-[500px] peer-checked:opacity-100 absolute
-      top-full left-0 w-full bg-white shadow-md text-blue flex flex-col gap-8 px-5 py-40 text-lg font-medium z-40"
+      class="max-h-0 overflow-hidden opacity-0 transition-all duration-500 ease-in-out peer-checked:max-h-[500px] peer-checked:opacity-100 absolute top-full left-0 w-full bg-white shadow-md text-blue flex flex-col gap-8 px-5 py-40 text-lg font-medium z-40"
     >
       <a
         (click)="closeMenu()"
