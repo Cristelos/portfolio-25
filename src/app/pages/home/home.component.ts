@@ -7,6 +7,7 @@ import {
   inject,
   NgZone,
   PLATFORM_ID,
+  QueryList,
   ViewChild,
 } from '@angular/core';
 import { ButtonCustomComponent } from '../../shared/components/button-custom/button-custom.component';
@@ -21,6 +22,7 @@ import { projects } from '../../shared/data/projects.data';
 import { MatIconModule } from '@angular/material/icon';
 
 import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { SplitText } from 'gsap/SplitText';
 
 @Component({
@@ -41,9 +43,19 @@ import { SplitText } from 'gsap/SplitText';
 })
 export default class HomeComponent implements AfterViewInit {
   // Animation elements
+  // Hero Section
   @ViewChild('principalTitle') principalTitle!: ElementRef<HTMLInputElement>;
   @ViewChild('secondaryTitle') secondaryTitle!: ElementRef<HTMLInputElement>;
   @ViewChild('arrowDown') arrowDown!: ElementRef<HTMLInputElement>;
+
+  // About Section
+  @ViewChild('about') about!: ElementRef<HTMLDivElement>;
+
+  // Projects Section
+  @ViewChild('projects') projects!: ElementRef<HTMLInputElement>;
+
+  // Contact Section
+  @ViewChild('contact') contact!: ElementRef<HTMLInputElement>;
 
   // Injectamos esto para que no rompa por terminal
   private zone = inject(NgZone);
@@ -52,13 +64,16 @@ export default class HomeComponent implements AfterViewInit {
   public featuredProjects: Project[] = this.getRandomProjects(projects.length);
 
   ngAfterViewInit(): void {
-    gsap.registerPlugin(SplitText);
+    gsap.registerPlugin(ScrollTrigger, SplitText);
 
     if (!isPlatformBrowser(this.platformId)) return;
 
     this.zone.runOutsideAngular(() => {
       this.animateTitles();
       this.animateArrow();
+      this.animateAbout();
+      this.animateProject();
+      this.animateContact();
     });
   }
 
@@ -90,16 +105,20 @@ export default class HomeComponent implements AfterViewInit {
       });
     });
 
-    tl.from(secondary, {
-      duration: 1,
-      opacity: 0,
-      scale: 0,
-      y: 80,
-      rotationX: 180,
-      transformOrigin: '0% 50% -50',
-      ease: 'back',
-      stagger: 0.01,
-    }, 0.5);
+    tl.from(
+      secondary,
+      {
+        duration: 1,
+        opacity: 0,
+        scale: 0,
+        y: 80,
+        rotationX: 180,
+        transformOrigin: '0% 50% -50',
+        ease: 'back',
+        stagger: 0.01,
+      },
+      0.5,
+    );
   }
 
   private animateArrow(): void {
@@ -110,6 +129,57 @@ export default class HomeComponent implements AfterViewInit {
       duration: 2,
       ease: 'bounce',
       repeat: 1,
+    });
+  }
+
+  private animateAbout(): void {
+    const element = this.about.nativeElement;
+
+    gsap.from(element, {
+      opacity: 0,
+      y: -150,
+      duration: 3,
+      ease: 'power2.out',
+      scrollTrigger: {
+        trigger: element,
+        start: 'top 60%',
+        end: 'bottom',
+        scrub: 1,
+      },
+    });
+  }
+
+  private animateProject(): void {
+    const element = this.projects.nativeElement;
+
+    gsap.from(element, {
+      opacity: 0,
+      y: -150,
+      duration: 3,
+      ease: 'power2.out',
+      scrollTrigger: {
+        trigger: element,
+        start: 'top 60%',
+        end: 'bottom',
+        scrub: 1,
+      },
+    });
+  }
+
+  private animateContact(): void {
+    const element = this.contact.nativeElement;
+
+    gsap.from(element, {
+      opacity: 0,
+      y: -150,
+      duration: 3,
+      ease: 'power2.out',
+      scrollTrigger: {
+        trigger: element,
+        start: 'top 80%',
+        end: 'bottom',
+        scrub: 1,
+      },
     });
   }
 

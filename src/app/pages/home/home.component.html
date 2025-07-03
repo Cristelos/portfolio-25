@@ -10,10 +10,16 @@
       <app-dots class="dots header-dot hidden lg:block" />
 
       <div class="text-light z-50 text-center flex flex-col items-center pb-8">
-        <h1 #principalTitle class="text-4xl sm:text-5xl md:text-7xl lg:text-7xl xl:text-8xl">
+        <h1
+          #principalTitle
+          class="text-4xl sm:text-5xl md:text-7xl lg:text-7xl xl:text-8xl"
+        >
           Frontend Developer
         </h1>
-        <h2 #secondaryTitle class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl mt-2">
+        <h2
+          #secondaryTitle
+          class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl mt-2"
+        >
           Patricia Fernández
         </h2>
         <!--Wave decorations-->
@@ -80,8 +86,11 @@
   </header>
 
   <!-- About me section-->
-  <section class="about bg-light py-20 lg:h-dvh flex justify-center items-center">
+  <section
+    class="about bg-light py-20 lg:h-dvh flex justify-center items-center"
+  >
     <div
+      #about
       class="max-w-7xl w-full mx-auto px-4 lg:px-8 flex flex-col lg:flex-row gap-16 items-start"
     >
       <div class="lg:w-3xl p-4 relative">
@@ -124,41 +133,46 @@
   </section>
 
   <!-- Skills carrusell-->
-<section class="skills bg-green h-40 flex justify-center items-center overflow-hidden">
- <app-carousel/>
-</section>
+  <section
+    class="skills bg-green h-40 flex justify-center items-center overflow-hidden"
+  >
+    <app-carousel />
+  </section>
 
   <!-- Recent projects-->
   <section
     class="h-dvh flex flex-col justify-center items-center bg-white py-20"
   >
-    <div class="lg:max-w-8xl mx-auto px-4 lg:px-8 projects relative">
-      <div class="mb-10">
-        <h2 class="text-3xl font-semibold text-blue">Recent Projects</h2>
-        <!--Wave decorations-->
-        <app-wave />
+    <div #projects class="h-dvh flex flex-col justify-center items-center">
+      <div class="lg:max-w-8xl mx-auto px-4 lg:px-8 projects relative">
+        <div class="mb-10">
+          <h2 class="text-3xl font-semibold text-blue">Recent Projects</h2>
+          <!--Wave decorations-->
+          <app-wave />
+        </div>
+
+        <!-- Proyects slider-->
+        <app-slider [slides]="featuredProjects" />
+
+        <!--Adding some dots decorations-->
+        <app-dots class="dots projects-dots hidden lg:block" />
       </div>
 
-      <!-- Proyects slider-->
-      <app-slider [slides]="featuredProjects" />
-
-      <!--Adding some dots decorations-->
-      <app-dots class="dots projects-dots hidden lg:block" />
-    </div>
-
-    <div class="mt-9">
-      <app-button-custom
-        [buttonText]="'Ver proyectos'"
-        [icons]="'open_in_new'"
-        [secondaryBlue]="true"
-        [routerLink]="'/portfolio'"
-      />
+      <div class="mt-9">
+        <app-button-custom
+          [buttonText]="'Ver proyectos'"
+          [icons]="'open_in_new'"
+          [secondaryBlue]="true"
+          [routerLink]="'/portfolio'"
+        />
+      </div>
     </div>
   </section>
 
   <!-- Contact-->
   <section class="h-dvh flex justify-center items-center bg-blue text-light">
     <div
+      #contact
       class="contact relative max-w-7xl w-full mx-auto px-4 lg:px-8 flex flex-col gap-16 items-center"
     >
       <div class="text-center flex flex-col items-center">
