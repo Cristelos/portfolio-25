@@ -10,10 +10,10 @@
       <app-dots class="dots header-dot hidden lg:block" />
 
       <div class="text-light z-50 text-center flex flex-col items-center pb-8">
-        <h1 class="text-4xl sm:text-5xl md:text-7xl lg:text-7xl xl:text-8xl">
+        <h1 #principalTitle class="text-4xl sm:text-5xl md:text-7xl lg:text-7xl xl:text-8xl">
           Frontend Developer
         </h1>
-        <h2 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl mt-2">
+        <h2 #secondaryTitle class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl mt-2">
           Patricia Fernández
         </h2>
         <!--Wave decorations-->
@@ -68,7 +68,7 @@
       </div>
 
       <!--Arrow down direction-->
-      <div class="text-pink text-7xl mt-8">
+      <div #arrowDown class="text-pink text-7xl mt-8">
         <mat-icon
           fontIcon="arrow_downward"
           inline

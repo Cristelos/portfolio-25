@@ -1,15 +1,28 @@
-import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
+import {
+  AfterViewInit,
+  ChangeDetectionStrategy,
+  Component,
+  ElementRef,
+  inject,
+  NgZone,
+  PLATFORM_ID,
+  ViewChild,
+} from '@angular/core';
 import { ButtonCustomComponent } from '../../shared/components/button-custom/button-custom.component';
 import { DotsComponent } from '../../shared/decorations/dots/dots.component';
 import { WaveComponent } from '../../shared/decorations/wave/wave.component';
 import { SliderComponent } from '../../shared/components/slider/slider.component';
+import { CarouselComponent } from '../../shared/components/carousel/carousel.component';
+
 import { Project } from '../../shared/models/project.model';
 import { projects } from '../../shared/data/projects.data';
 
 import { MatIconModule } from '@angular/material/icon';
 
-import { CarouselComponent } from '../../shared/components/carousel/carousel.component';
+import { gsap } from 'gsap';
+import { SplitText } from 'gsap/SplitText';
+
 @Component({
   selector: 'app-home',
   standalone: true,
@@ -26,8 +39,79 @@ import { CarouselComponent } from '../../shared/components/carousel/carousel.com
   styleUrl: './home.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export default class HomeComponent {
+export default class HomeComponent implements AfterViewInit {
+  // Animation elements
+  @ViewChild('principalTitle') principalTitle!: ElementRef<HTMLInputElement>;
+  @ViewChild('secondaryTitle') secondaryTitle!: ElementRef<HTMLInputElement>;
+  @ViewChild('arrowDown') arrowDown!: ElementRef<HTMLInputElement>;
+
+  // Injectamos esto para que no rompa por terminal
+  private zone = inject(NgZone);
+  private platformId = inject(PLATFORM_ID);
+
   public featuredProjects: Project[] = this.getRandomProjects(projects.length);
+
+  ngAfterViewInit(): void {
+    gsap.registerPlugin(SplitText);
+
+    if (!isPlatformBrowser(this.platformId)) return;
+
+    this.zone.runOutsideAngular(() => {
+      this.animateTitles();
+      this.animateArrow();
+    });
+  }
+
+  //Animate logic
+  private animateTitles(): void {
+    const principalTitleAnimation = this.principalTitle.nativeElement;
+    const secondaryTitleAnimation = this.secondaryTitle.nativeElement;
+
+    let splitPrincipalTitle = SplitText.create(principalTitleAnimation, {
+      type: 'chars',
+    });
+    let splitSecondaryTitle = SplitText.create(secondaryTitleAnimation, {
+      type: 'words,chars',
+    });
+
+    let tl = gsap.timeline();
+    let secondary = splitSecondaryTitle.chars;
+
+    splitPrincipalTitle.chars.forEach((char) => {
+      gsap.from(char, {
+        scale: () => gsap.utils.random(0, 10),
+        y: () => gsap.utils.random(-100, 150),
+        x: () => gsap.utils.random(-300, 350),
+        rotate: () => gsap.utils.random(0, 360),
+        autoAlpha: 0.05,
+        stagger: 0.05,
+        ease: 'power4.out',
+        duration: 1.8,
+      });
+    });
+
+    tl.from(secondary, {
+      duration: 1,
+      opacity: 0,
+      scale: 0,
+      y: 80,
+      rotationX: 180,
+      transformOrigin: '0% 50% -50',
+      ease: 'back',
+      stagger: 0.01,
+    }, 0.5);
+  }
+
+  private animateArrow(): void {
+    const arrowDownAnimation = this.arrowDown.nativeElement;
+
+    gsap.from(arrowDownAnimation, {
+      y: -80,
+      duration: 2,
+      ease: 'bounce',
+      repeat: 1,
+    });
+  }
 
   private getRandomProjects(count: number): Project[] {
     const shuffled = [...projects].sort(() => 0.5 - Math.random());
