@@ -1,5 +1,6 @@
 <!-- portfolio section-->
 <section
+  #header
   class="portfolio bg-white py-20 pt-40 flex justify-center items-center"
 >
   <div
@@ -23,7 +24,10 @@
   </div>
 </section>
 
-<section class="filter max-w-3xl w-full mx-auto px-4 lg:px-8 flex flex-row flex-wrap justify-center gap-4">
+<section
+  #filter
+  class="filter max-w-3xl w-full mx-auto px-4 lg:px-8 flex flex-row flex-wrap justify-center gap-4"
+>
   <app-badge
     [categoryName]="'Todos'"
     (click)="selectCategory(null)"
@@ -43,6 +47,7 @@
   class="portfolio bg-white py-20 pt-10 flex flex-col justify-center items-center gap-9"
 >
   <div
+    #projects
     class="max-w-7xl w-full px-4 lg:px-8 flex flex-col lg:flex-row lg:flex-wrap gap-6"
   >
     @for (project of filteredProjects(); track project.id) {

@@ -1,10 +1,15 @@
-import { CommonModule } from '@angular/common';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
   inject,
   signal,
   computed,
+  ViewChild,
+  ElementRef,
+  NgZone,
+  PLATFORM_ID,
+  AfterViewInit,
 } from '@angular/core'; // Importar 'computed'
 import { WaveComponent } from '../../shared/decorations/wave/wave.component';
 import { DotsComponent } from '../../shared/decorations/dots/dots.component';
@@ -16,6 +21,8 @@ import { DetailModalComponent } from '../../shared/components/detail-modal/detai
 
 import { MatIconModule } from '@angular/material/icon';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+
+import { gsap } from 'gsap';
 
 @Component({
   selector: 'app-portfolio',
@@ -33,10 +40,29 @@ import { MatDialog, MatDialogModule } from '@angular/material/dialog';
   styleUrl: './portfolio.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export default class PortfolioComponent {
+export default class PortfolioComponent implements AfterViewInit {
+  // Animation elements
+  @ViewChild('header') header!: ElementRef<HTMLInputElement>;
+  @ViewChild('filter') filter!: ElementRef<HTMLInputElement>;
+  @ViewChild('projects') projects!: ElementRef<HTMLInputElement>;
+
+  // Injectamos esto para que no rompa por terminal
+  private zone = inject(NgZone);
+  private platformId = inject(PLATFORM_ID);
+
   readonly dialog = inject(MatDialog);
   public allProjects = signal<Project[]>(projects);
   public selectedCategory = signal<string | null>(null);
+
+  ngAfterViewInit(): void {
+    if (!isPlatformBrowser(this.platformId)) return;
+
+    this.zone.runOutsideAngular(() => {
+      this.animateHeader();
+      this.animateFilter();
+      this.animateProjects();
+    });
+  }
 
   // Unique categories
   public uniqueCategories = computed(() => {
@@ -86,6 +112,40 @@ export default class PortfolioComponent {
       data: project,
       width: 'w-full',
       panelClass: 'custom-dialog-container',
+    });
+  }
+
+  // Animate logic
+  private animateHeader(): void {
+    const element = this.header.nativeElement;
+
+    gsap.from(element, {
+      opacity: 0,
+      y: -150,
+      duration: 3,
+      ease: 'power2.out',
+    });
+  }
+
+  private animateFilter(): void {
+    const element = this.filter.nativeElement;
+
+    gsap.from(element, {
+      opacity: 0,
+      y: -70,
+      duration: 3,
+      ease: 'power2.out',
+    });
+  }
+
+    private animateProjects(): void {
+    const element = this.projects.nativeElement;
+
+    gsap.from(element, {
+      opacity: 0,
+      y: -80,
+      duration: 3,
+      ease: 'power2.out',
     });
   }
 }
