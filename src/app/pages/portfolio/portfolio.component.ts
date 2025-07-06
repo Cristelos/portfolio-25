@@ -10,6 +10,7 @@ import {
   NgZone,
   PLATFORM_ID,
   AfterViewInit,
+  OnInit,
 } from '@angular/core'; // Importar 'computed'
 import { WaveComponent } from '../../shared/decorations/wave/wave.component';
 import { DotsComponent } from '../../shared/decorations/dots/dots.component';
@@ -23,6 +24,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 
 import { gsap } from 'gsap';
+import { Meta, Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-portfolio',
@@ -40,7 +42,25 @@ import { gsap } from 'gsap';
   styleUrl: './portfolio.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export default class PortfolioComponent implements AfterViewInit {
+export default class PortfolioComponent implements AfterViewInit, OnInit {
+  // Metadatos
+  private title = inject(Title);
+  private meta = inject(Meta);
+
+  ngOnInit(): void {
+    this.title.setTitle('Portfolio');
+    this.meta.updateTag({
+      name: 'description',
+      content: 'Mis projectos',
+    });
+    this.meta.updateTag({ name: 'og:title', content: 'Portfolio' });
+    this.meta.updateTag({
+      name: 'keywords',
+      content:
+        'experiencia laboral, cv,habilidades,skills,angular, html,css,patricia fernández,typescript',
+    });
+  }
+
   // Animation elements
   @ViewChild('header') header!: ElementRef<HTMLInputElement>;
   @ViewChild('filter') filter!: ElementRef<HTMLInputElement>;
@@ -138,7 +158,7 @@ export default class PortfolioComponent implements AfterViewInit {
     });
   }
 
-    private animateProjects(): void {
+  private animateProjects(): void {
     const element = this.projects.nativeElement;
 
     gsap.from(element, {

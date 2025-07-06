@@ -6,6 +6,7 @@ import {
   ElementRef,
   inject,
   NgZone,
+  OnInit,
   PLATFORM_ID,
   QueryList,
   ViewChild,
@@ -24,6 +25,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { SplitText } from 'gsap/SplitText';
+import { Meta, Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-home',
@@ -41,7 +43,26 @@ import { SplitText } from 'gsap/SplitText';
   styleUrl: './home.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export default class HomeComponent implements AfterViewInit {
+export default class HomeComponent implements AfterViewInit, OnInit {
+  // Metadatos
+  private title = inject(Title);
+  private meta = inject(Meta);
+
+  ngOnInit(): void {
+    this.title.setTitle('Frontend developer');
+    this.meta.updateTag({
+      name: 'description',
+      content:
+        'Este apartado encontrarás información sobre mí, mis habilidades y mi experiencia laboral',
+    });
+    this.meta.updateTag({ name: 'og:title', content: 'Frontend developer' });
+    this.meta.updateTag({
+      name: 'keywords',
+      content:
+        'experiencia laboral, cv,habilidades,skills,angular, html,css,patricia fernández,typescript',
+    });
+  }
+
   // Animation elements
   // Hero Section
   @ViewChild('principalTitle') principalTitle!: ElementRef<HTMLInputElement>;

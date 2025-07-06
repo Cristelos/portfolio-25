@@ -15,6 +15,7 @@ import { WaveComponent } from '../../shared/decorations/wave/wave.component';
 import { MatIconModule } from '@angular/material/icon';
 
 import { gsap } from 'gsap';
+import { Meta, Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-contact',
@@ -31,6 +32,25 @@ import { gsap } from 'gsap';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export default class ContactComponent implements AfterViewInit {
+    // Metadatos
+  private title = inject(Title);
+  private meta = inject(Meta);
+
+  ngOnInit(): void {
+    this.title.setTitle('Contact');
+    this.meta.updateTag({
+      name: 'description',
+      content:
+        'Contacta conmigo',
+    });
+    this.meta.updateTag({ name: 'og:title', content: 'Contact' });
+    this.meta.updateTag({
+      name: 'keywords',
+      content:
+        'experiencia laboral, cv,habilidades,skills,angular, html,css,patricia fernández,typescript',
+    });
+  }
+
   // Animation elements
   @ViewChild('header') header!: ElementRef<HTMLInputElement>;
 

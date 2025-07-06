@@ -6,6 +6,7 @@ import {
   ElementRef,
   inject,
   NgZone,
+  OnInit,
   PLATFORM_ID,
   ViewChild,
 } from '@angular/core';
@@ -15,6 +16,7 @@ import { ProgressBarComponent } from '../../shared/components/progress-bar/progr
 
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { Meta, Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-about',
@@ -24,7 +26,26 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
   styleUrl: './about.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export default class AboutComponent implements AfterViewInit {
+export default class AboutComponent implements AfterViewInit, OnInit {
+  // Metadatos
+  private title = inject(Title);
+  private meta = inject(Meta);
+
+  ngOnInit(): void {
+    this.title.setTitle('About me');
+    this.meta.updateTag({
+      name: 'description',
+      content:
+        'Información sobre mí, mis habilidades y mi experiencia laboral',
+    });
+    this.meta.updateTag({ name: 'og:title', content: 'About me' });
+    this.meta.updateTag({
+      name: 'keywords',
+      content:
+        'experiencia laboral, cv,habilidades,skills,angular, html,css,patricia fernández,typescript',
+    });
+  }
+
   // Animation elements
   @ViewChild('header') header!: ElementRef<HTMLInputElement>;
   @ViewChild('skills') skills!: ElementRef<HTMLInputElement>;
@@ -58,7 +79,7 @@ export default class AboutComponent implements AfterViewInit {
     });
   }
 
-    private animateSkills(): void {
+  private animateSkills(): void {
     const element = this.skills.nativeElement;
 
     gsap.from(element, {
@@ -69,7 +90,7 @@ export default class AboutComponent implements AfterViewInit {
     });
   }
 
-    private animateExperiencie(): void {
+  private animateExperiencie(): void {
     const element = this.experience.nativeElement;
 
     gsap.from(element, {
