@@ -35,14 +35,18 @@ export default class AboutComponent implements AfterViewInit, OnInit {
     this.title.setTitle('About me');
     this.meta.updateTag({
       name: 'description',
-      content:
-        'Información sobre mí, mis habilidades y mi experiencia laboral',
+      content: 'Información sobre mí, mis habilidades y mi experiencia laboral',
     });
     this.meta.updateTag({ name: 'og:title', content: 'About me' });
     this.meta.updateTag({
       name: 'keywords',
       content:
         'experiencia laboral, cv,habilidades,skills,angular, html,css,patricia fernández,typescript',
+    });
+    this.meta.updateTag({
+      property: 'og:image',
+      content:
+        'https://res.cloudinary.com/dgguxcib9/image/upload/v1751824219/portfolio/logo-web_hthtfp.png',
     });
   }
 

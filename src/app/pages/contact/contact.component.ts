@@ -49,6 +49,10 @@ export default class ContactComponent implements AfterViewInit {
       content:
         'experiencia laboral, cv,habilidades,skills,angular, html,css,patricia fernández,typescript',
     });
+        this.meta.updateTag({
+      property: 'og:image',
+      content: 'https://res.cloudinary.com/dgguxcib9/image/upload/v1751824219/portfolio/logo-web_hthtfp.png',
+    });
   }
 
   // Animation elements
