@@ -13,22 +13,23 @@
 
     <!-- Contenido -->
     <div class="w-full flex flex-col mt-9">
-        <h3 class="text-lg font-semibold mb-1">{{ project.title }}</h3>
+      <h3 class="text-lg font-semibold mb-1">{{ project.title }}</h3>
 
-        <!-- Badges -->
-        <div class="flex flex-wrap gap-1 mb-4">
-          @if (project.category) {
-            @for (cat of project.category; track cat.id) {
-              <app-badge [categoryName]="cat.name" />
-            }
+      <!-- Badges -->
+      <div class="flex flex-wrap gap-1 mb-4">
+        @if (project.category) {
+          @for (cat of project.category; track cat.id) {
+            <app-badge [categoryName]="cat.name" />
           }
-        </div>
+        }
+      </div>
 
-        <!-- Description-->
-        <p>{{ project.description }}</p>
+      <!-- Description-->
+      <p>{{ project.description }}</p>
 
-        <!-- External links-->
-        <div class="flex flex-wrap">
+      <!-- External links-->
+      <div class="flex flex-wrap">
+        @if (project.git) {
           <app-button-custom
             [buttonText]="'Github'"
             [secondaryGreen]="true"
@@ -36,6 +37,8 @@
             class="mt-10"
             mat-dialog-close
           />
+        }
+        @if (project.url) {
           <app-button-custom
             [buttonText]="'Abrir'"
             [secondaryGreen]="true"
@@ -43,8 +46,8 @@
             class="mt-10"
             mat-dialog-close
           />
-        </div>
-
+        }
+      </div>
     </div>
   </div>
 </mat-dialog-content>

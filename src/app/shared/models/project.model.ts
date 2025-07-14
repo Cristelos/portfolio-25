@@ -3,9 +3,8 @@ export interface Project {
   image: string;
   title: string;
   category: Category[];
-  url: string;
+  url?: string;
   description: string;
-  date: string;
   git: string;
   layout?: { col: number; row: number };
 }
