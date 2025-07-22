@@ -69,7 +69,12 @@ export default class HomeComponent implements AfterViewInit, OnInit {
   }
 
   // Animation elements
+  // Preloader
   @ViewChild('mainContent') mainContent!: ElementRef<HTMLDivElement>;
+
+  @ViewChild('pink') pink!: ElementRef<HTMLInputElement>;
+  @ViewChild('blue') blue!: ElementRef<HTMLInputElement>;
+  @ViewChild('green') green!: ElementRef<HTMLInputElement>;
 
   // Hero Section
   @ViewChild('principalTitle') principalTitle!: ElementRef<HTMLInputElement>;
@@ -116,11 +121,21 @@ export default class HomeComponent implements AfterViewInit, OnInit {
     const preloaderText = document.getElementById('preloader-text');
     const mainContentElement = this.mainContent.nativeElement;
 
-    if (!preloader || !preloaderText || !mainContentElement) {
-      console.warn(
-        'Alguno de los elementos de preloader o contenido principal no se encontró.',
-      );
+    const pinkElement = this.pink.nativeElement;
+    const blueElement = this.blue.nativeElement;
+    const greenElement = this.green.nativeElement;
 
+    if (
+      !preloader ||
+      !preloaderText ||
+      !mainContentElement ||
+      !pinkElement ||
+      !blueElement ||
+      !greenElement
+    ) {
+      console.warn(
+        'Alguno de los elementos de preloader o contenido principal no se encontró. Asegúrate de que todos los @ViewChilds estén disponibles.',
+      );
       if (preloader) preloader.remove();
       gsap.set(mainContentElement, { autoAlpha: 1 });
       document.body.classList.remove('loading');
@@ -166,6 +181,35 @@ export default class HomeComponent implements AfterViewInit, OnInit {
     );
 
     masterTl.to(
+      pinkElement,
+      {
+        y: '-100%',
+        duration: 0.5,
+        ease: 'power4.in',
+      },
+      '<0.1',
+    );
+
+    masterTl.to(
+      blueElement,
+      {
+        y: '-100%',
+        duration: 0.7,
+        ease: 'bounce.out',
+      },
+      '<0.2',
+    );
+
+    masterTl.to(
+      greenElement,
+      {
+        y: '-100%',
+        duration: 1,
+        ease: 'circ.out',
+      },
+      '<0.3',
+    );
+    masterTl.to(
       mainContentElement,
       {
         autoAlpha: 1,
@@ -175,7 +219,7 @@ export default class HomeComponent implements AfterViewInit, OnInit {
       '<0.2',
     );
 
-    masterTl.add(this.animateTitles(), '-=0.7');
+    masterTl.add(this.animateTitles(), '-=0.6');
 
     masterTl.add(this.animateArrow(), '-=0.5');
   }
@@ -195,7 +239,7 @@ export default class HomeComponent implements AfterViewInit, OnInit {
     let secondary = splitSecondaryTitle.chars;
 
     tl.from(splitPrincipalTitle.chars, {
-      scale: () => gsap.utils.random(0, 10),
+      scale: () => gsap.utils.random(0, 20),
       y: () => gsap.utils.random(-100, 150),
       x: () => gsap.utils.random(-300, 350),
       rotate: () => gsap.utils.random(0, 360),
