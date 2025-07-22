@@ -63,11 +63,14 @@ export default class HomeComponent implements AfterViewInit, OnInit {
     });
     this.meta.updateTag({
       property: 'og:image',
-      content: 'https://res.cloudinary.com/dgguxcib9/image/upload/v1751824219/portfolio/logo-web_hthtfp.png',
+      content:
+        'https://res.cloudinary.com/dgguxcib9/image/upload/v1751824219/portfolio/logo-web_hthtfp.png',
     });
   }
 
   // Animation elements
+  @ViewChild('mainContent') mainContent!: ElementRef<HTMLDivElement>;
+
   // Hero Section
   @ViewChild('principalTitle') principalTitle!: ElementRef<HTMLInputElement>;
   @ViewChild('secondaryTitle') secondaryTitle!: ElementRef<HTMLInputElement>;
@@ -94,16 +97,90 @@ export default class HomeComponent implements AfterViewInit, OnInit {
     if (!isPlatformBrowser(this.platformId)) return;
 
     this.zone.runOutsideAngular(() => {
-      this.animateTitles();
-      this.animateArrow();
-      this.animateAbout();
-      this.animateProject();
-      this.animateContact();
+      gsap.set(this.mainContent.nativeElement, { autoAlpha: 0 });
+
+      this.animatePageLoadSequence();
+      // this.animatePreloader(() => {
+      //   this.animateTitles();
+      //   this.animateArrow();
+      //   this.animateAbout();
+      //   this.animateProject();
+      //   this.animateContact();
+      // });
     });
   }
 
   //Animate logic
-  private animateTitles(): void {
+  private animatePageLoadSequence(): void {
+    const preloader = document.getElementById('preloader');
+    const preloaderText = document.getElementById('preloader-text');
+    const mainContentElement = this.mainContent.nativeElement;
+
+    if (!preloader || !preloaderText || !mainContentElement) {
+      console.warn(
+        'Alguno de los elementos de preloader o contenido principal no se encontró.',
+      );
+
+      if (preloader) preloader.remove();
+      gsap.set(mainContentElement, { autoAlpha: 1 });
+      document.body.classList.remove('loading');
+      return;
+    }
+
+    const preloaderTextElements = preloaderText.querySelectorAll('h2');
+
+    const masterTl = gsap.timeline({
+      onComplete: () => {
+        preloader.remove();
+        document.body.classList.remove('loading');
+      },
+      delay: 0.3,
+    });
+
+    masterTl.from(preloaderTextElements, {
+      y: 100,
+      opacity: 0,
+      duration: 1.2,
+      stagger: 0.2,
+      ease: 'power4.out',
+    });
+
+    masterTl.to(
+      preloaderTextElements,
+      {
+        autoAlpha: 0,
+        duration: 0.6,
+        ease: 'power2.in',
+      },
+      '+=0.4',
+    );
+
+    masterTl.to(
+      preloader,
+      {
+        y: '-100%',
+        duration: 1,
+        ease: 'power4.inOut',
+      },
+      '<0.1',
+    );
+
+    masterTl.to(
+      mainContentElement,
+      {
+        autoAlpha: 1,
+        duration: 1,
+        ease: 'power4.out',
+      },
+      '<0.2',
+    );
+
+    masterTl.add(this.animateTitles(), '-=0.7');
+
+    masterTl.add(this.animateArrow(), '-=0.5');
+  }
+
+  private animateTitles(): gsap.core.Timeline {
     const principalTitleAnimation = this.principalTitle.nativeElement;
     const secondaryTitleAnimation = this.secondaryTitle.nativeElement;
 
@@ -117,17 +194,13 @@ export default class HomeComponent implements AfterViewInit, OnInit {
     let tl = gsap.timeline();
     let secondary = splitSecondaryTitle.chars;
 
-    splitPrincipalTitle.chars.forEach((char) => {
-      gsap.from(char, {
-        scale: () => gsap.utils.random(0, 10),
-        y: () => gsap.utils.random(-100, 150),
-        x: () => gsap.utils.random(-300, 350),
-        rotate: () => gsap.utils.random(0, 360),
-        autoAlpha: 0.05,
-        stagger: 0.05,
-        ease: 'power4.out',
-        duration: 1.8,
-      });
+    tl.from(splitPrincipalTitle.chars, {
+      scale: () => gsap.utils.random(0, 10),
+      y: () => gsap.utils.random(-100, 150),
+      x: () => gsap.utils.random(-300, 350),
+      rotate: () => gsap.utils.random(0, 360),
+      ease: 'power4.out',
+      duration: 1.8,
     });
 
     tl.from(
@@ -141,20 +214,24 @@ export default class HomeComponent implements AfterViewInit, OnInit {
         transformOrigin: '0% 50% -50',
         ease: 'back',
         stagger: 0.01,
+        delay: 0.5,
       },
       0.5,
     );
+    return tl;
   }
 
-  private animateArrow(): void {
+  private animateArrow(): gsap.core.Timeline {
     const arrowDownAnimation = this.arrowDown.nativeElement;
+    let tl = gsap.timeline();
 
-    gsap.from(arrowDownAnimation, {
+    tl.from(arrowDownAnimation, {
       y: -80,
       duration: 2,
       ease: 'bounce',
       repeat: 1,
     });
+    return tl;
   }
 
   private animateAbout(): void {
