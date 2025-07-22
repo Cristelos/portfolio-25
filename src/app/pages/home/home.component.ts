@@ -96,7 +96,7 @@ export default class HomeComponent implements AfterViewInit, OnInit {
 
   public featuredProjects: Project[] = this.getRandomProjects(projects.length);
 
-  ngAfterViewInit(): void {
+ ngAfterViewInit(): void {
     gsap.registerPlugin(ScrollTrigger, SplitText);
 
     if (!isPlatformBrowser(this.platformId)) return;
@@ -104,14 +104,13 @@ export default class HomeComponent implements AfterViewInit, OnInit {
     this.zone.runOutsideAngular(() => {
       gsap.set(this.mainContent.nativeElement, { autoAlpha: 0 });
 
+      // Home load animation
       this.animatePageLoadSequence();
-      // this.animatePreloader(() => {
-      //   this.animateTitles();
-      //   this.animateArrow();
-      //   this.animateAbout();
-      //   this.animateProject();
-      //   this.animateContact();
-      // });
+
+      // Animations on the other page section
+      this.animateAbout();
+      this.animateProject();
+      this.animateContact();
     });
   }
 
