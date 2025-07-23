@@ -1,19 +1,22 @@
 <!--Preloader-->
-<div
-  id="preloader"
-  class="fixed inset-0 bg-white z-[9999] flex items-center justify-center"
->
-  <div id="preloader-text" class="overflow-hidden text-center">
-    <h2
-      class="text-4xl sm:text-6xl font-bold text-blue leading-tight uppercase"
+<div class="w-full">
+  <div id="preloader" class="fixed inset-0 bg-white z-[9999]">
+    <div
+      id="preloader-text"
+      class="text-center overflow-hidden max-w-full overflow-x-hidden w-full"
+      style="width: 100vw; padding: 0 1rem; box-sizing: border-box"
     >
-      Patricia Fernández
-    </h2>
+      <h2
+        class="text-3xl sm:text-5xl md:text-7xl lg:text-7xl xl:text-8xl font-bold text-blue uppercase break-words"
+      >
+        Patricia Fernández
+      </h2>
+    </div>
   </div>
+  <div #pink class="w-full fixed inset-0 z-[9998] bg-pink"></div>
+  <div #blue class="w-full fixed inset-0 z-[9997] bg-blue"></div>
+  <div #green class="w-full fixed inset-0 z-[9996] bg-green"></div>
 </div>
-<div #pink class="fixed inset-0 h-full z-[9998] bg-pink"></div>
-<div #blue class="fixed inset-0 h-full z-[9997] bg-blue"></div>
-<div #green class="fixed inset-0 h-full z-[9996] bg-green"></div>
 
 <div #mainContent class="w-full">
   <!-- Header section-->

@@ -96,7 +96,7 @@ export default class HomeComponent implements AfterViewInit, OnInit {
 
   public featuredProjects: Project[] = this.getRandomProjects(projects.length);
 
- ngAfterViewInit(): void {
+  ngAfterViewInit(): void {
     gsap.registerPlugin(ScrollTrigger, SplitText);
 
     if (!isPlatformBrowser(this.platformId)) return;
@@ -132,19 +132,25 @@ export default class HomeComponent implements AfterViewInit, OnInit {
       !blueElement ||
       !greenElement
     ) {
-      console.warn(
-        'Alguno de los elementos de preloader o contenido principal no se encontró. Asegúrate de que todos los @ViewChilds estén disponibles.',
-      );
+      console.warn('Faltan elementos para la animación del preloader');
       if (preloader) preloader.remove();
-      gsap.set(mainContentElement, { autoAlpha: 1 });
+      gsap.set(mainContentElement, { clearProps: 'all' });
       document.body.classList.remove('loading');
       return;
     }
 
     const preloaderTextElements = preloaderText.querySelectorAll('h2');
 
+    // Aseguramos que el contenido está oculto
+    gsap.set(mainContentElement, {
+      opacity: 0,
+      visibility: 'hidden',
+      pointerEvents: 'none',
+    });
+
     const masterTl = gsap.timeline({
       onComplete: () => {
+        // Quitamos el preloader y liberamos scroll
         preloader.remove();
         document.body.classList.remove('loading');
       },
@@ -169,57 +175,43 @@ export default class HomeComponent implements AfterViewInit, OnInit {
       '+=0.4',
     );
 
-    masterTl.to(
-      preloader,
-      {
-        y: '-100%',
-        duration: 1,
-        ease: 'power4.inOut',
-      },
-      '<0.1',
-    );
+    masterTl.to(preloader, {
+      y: '-100%',
+      duration: 1,
+      ease: 'power4.inOut',
+    });
 
     masterTl.to(
       pinkElement,
-      {
-        y: '-100%',
-        duration: 0.5,
-        ease: 'power4.in',
-      },
-      '<0.1',
+      { y: '-100%', duration: 0.6, ease: 'power4.inOut' },
+      '-=0.8',
     );
-
     masterTl.to(
       blueElement,
-      {
-        y: '-100%',
-        duration: 0.7,
-        ease: 'bounce.out',
-      },
-      '<0.2',
+      { y: '-100%', duration: 0.8, ease: 'bounce.out' },
+      '-=0.6',
     );
-
     masterTl.to(
       greenElement,
-      {
-        y: '-100%',
-        duration: 1,
-        ease: 'circ.out',
-      },
-      '<0.3',
+      { y: '-100%', duration: 1, ease: 'circ.out' },
+      '-=0.4',
     );
+
     masterTl.to(
       mainContentElement,
       {
-        autoAlpha: 1,
-        duration: 1,
-        ease: 'power4.out',
+        opacity: 1,
+        visibility: 'visible',
+        pointerEvents: 'auto',
+        duration: 0.6,
+        ease: 'power2.out',
+        clearProps: 'all',
       },
-      '<0.2',
+      '-=0.3',
     );
 
+    // Añade animaciones internas
     masterTl.add(this.animateTitles(), '-=0.6');
-
     masterTl.add(this.animateArrow(), '-=0.5');
   }
 
