@@ -17,16 +17,10 @@ import { Project } from '../../models/project.model';
 
 import { MatIconModule } from '@angular/material/icon';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-
 @Component({
   selector: 'app-slider',
   standalone: true,
-  imports: [
-    CommonModule,
-    CardComponent,
-    MatIconModule,
-    MatProgressSpinnerModule,
-  ],
+  imports: [CommonModule, CardComponent, MatIconModule, MatProgressSpinnerModule],
   templateUrl: './slider.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
@@ -42,11 +36,6 @@ export class SliderComponent implements OnInit {
   ngOnInit(): void {
     if (isPlatformBrowser(this.platformId)) {
       this.slidesPerView.set(this.getSlidesPerViewByWindowWidth());
-
-      // LOG para depuración en ngOnInit
-      console.log('OnInit - slides.length:', this.slides().length);
-      console.log('OnInit - slidesPerView:', this.slidesPerView());
-      console.log('OnInit - Num Indicadores:', Math.ceil(this.slides().length / this.slidesPerView()));
 
       this.resizeObserver = new ResizeObserver(() => {
         this.handleResize();
@@ -68,11 +57,6 @@ export class SliderComponent implements OnInit {
     if (prevSlidesPerView !== newSlidesPerView) {
       this.slidesPerView.set(newSlidesPerView);
 
-       // LOG para depuración en handleResize
-      console.log('handleResize - newSlidesPerView:', newSlidesPerView);
-      console.log('handleResize - slides.length:', this.slides().length);
-      console.log('handleResize - Num Indicadores (después de resize):', Math.ceil(this.slides().length / newSlidesPerView));
-
       const total = this.slides().length;
       const maxIndex = Math.max(0, total - newSlidesPerView);
       if (this.slideIndex() > maxIndex) {
@@ -83,8 +67,6 @@ export class SliderComponent implements OnInit {
 
   private getSlidesPerViewByWindowWidth(): number {
     const width = window.innerWidth;
-
-     console.log('getSlidesPerViewByWindowWidth - window.innerWidth:', width);
     if (width >= 1280) return 4;
     if (width >= 1024) return 3;
     if (width >= 768) return 2;
@@ -133,13 +115,6 @@ export class SliderComponent implements OnInit {
   getIndicatorSlides(): any[] {
     const total = this.slides().length;
     const perView = this.slidesPerView();
-
-    // LOG para depuración en getIndicatorSlides
-    console.log('getIndicatorSlides - total slides:', total);
-    console.log('getIndicatorSlides - slides per view:', perView);
-    const numIndicators = Math.ceil(total / perView);
-    console.log('getIndicatorSlides - calculated indicators:', numIndicators);
-
     if (total === 0 || perView === 0) return [];
     return new Array(Math.ceil(total / perView));
   }
