@@ -13,13 +13,20 @@ import {
 } from '@angular/core';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { CardComponent } from '../card/card.component';
-import { MatIconModule } from '@angular/material/icon';
 import { Project } from '../../models/project.model';
+
+import { MatIconModule } from '@angular/material/icon';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @Component({
   selector: 'app-slider',
   standalone: true,
-  imports: [CommonModule, CardComponent, MatIconModule],
+  imports: [
+    CommonModule,
+    CardComponent,
+    MatIconModule,
+    MatProgressSpinnerModule,
+  ],
   templateUrl: './slider.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
