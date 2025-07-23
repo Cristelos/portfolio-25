@@ -22,6 +22,7 @@
 }
 
 :root {
+
   /*Web pallete colors*/
   --color-light: #ffeedd;
   --color-green: #00cc99;
@@ -38,16 +39,6 @@
   --color-red-20: #ec0b433e;
   --color-mustard-20: #fed86640;
   --color-pumpkin-20: #fe812d39;
-}
-
-body.loading {
-  overflow: hidden;
-  position: fixed;
-  width: 100%;
-}
-
-body.loading main {
-  opacity: 0;
 }
 
 h1 {

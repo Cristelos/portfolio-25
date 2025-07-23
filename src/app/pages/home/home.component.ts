@@ -63,18 +63,12 @@ export default class HomeComponent implements AfterViewInit, OnInit {
     });
     this.meta.updateTag({
       property: 'og:image',
-      content:
-        'https://res.cloudinary.com/dgguxcib9/image/upload/v1751824219/portfolio/logo-web_hthtfp.png',
+      content: 'https://res.cloudinary.com/dgguxcib9/image/upload/v1751824219/portfolio/logo-web_hthtfp.png',
     });
   }
 
   // Animation elements
-  // Preloader
   @ViewChild('mainContent') mainContent!: ElementRef<HTMLDivElement>;
-
-  @ViewChild('pink') pink!: ElementRef<HTMLInputElement>;
-  @ViewChild('blue') blue!: ElementRef<HTMLInputElement>;
-  @ViewChild('green') green!: ElementRef<HTMLInputElement>;
 
   // Hero Section
   @ViewChild('principalTitle') principalTitle!: ElementRef<HTMLInputElement>;
@@ -104,13 +98,14 @@ export default class HomeComponent implements AfterViewInit, OnInit {
     this.zone.runOutsideAngular(() => {
       gsap.set(this.mainContent.nativeElement, { autoAlpha: 0 });
 
-      // Home load animation
       this.animatePageLoadSequence();
-
-      // Animations on the other page section
-      this.animateAbout();
-      this.animateProject();
-      this.animateContact();
+      // this.animatePreloader(() => {
+      //   this.animateTitles();
+      //   this.animateArrow();
+      //   this.animateAbout();
+      //   this.animateProject();
+      //   this.animateContact();
+      // });
     });
   }
 
@@ -120,37 +115,21 @@ export default class HomeComponent implements AfterViewInit, OnInit {
     const preloaderText = document.getElementById('preloader-text');
     const mainContentElement = this.mainContent.nativeElement;
 
-    const pinkElement = this.pink.nativeElement;
-    const blueElement = this.blue.nativeElement;
-    const greenElement = this.green.nativeElement;
+    if (!preloader || !preloaderText || !mainContentElement) {
+      console.warn(
+        'Alguno de los elementos de preloader o contenido principal no se encontró.',
+      );
 
-    if (
-      !preloader ||
-      !preloaderText ||
-      !mainContentElement ||
-      !pinkElement ||
-      !blueElement ||
-      !greenElement
-    ) {
-      console.warn('Faltan elementos para la animación del preloader');
       if (preloader) preloader.remove();
-      gsap.set(mainContentElement, { clearProps: 'all' });
+      gsap.set(mainContentElement, { autoAlpha: 1 });
       document.body.classList.remove('loading');
       return;
     }
 
     const preloaderTextElements = preloaderText.querySelectorAll('h2');
 
-    // Aseguramos que el contenido está oculto
-    gsap.set(mainContentElement, {
-      opacity: 0,
-      visibility: 'hidden',
-      pointerEvents: 'none',
-    });
-
     const masterTl = gsap.timeline({
       onComplete: () => {
-        // Quitamos el preloader y liberamos scroll
         preloader.remove();
         document.body.classList.remove('loading');
       },
@@ -175,43 +154,28 @@ export default class HomeComponent implements AfterViewInit, OnInit {
       '+=0.4',
     );
 
-    masterTl.to(preloader, {
-      y: '-100%',
-      duration: 1,
-      ease: 'power4.inOut',
-    });
-
     masterTl.to(
-      pinkElement,
-      { y: '-100%', duration: 0.6, ease: 'power4.inOut' },
-      '-=0.8',
-    );
-    masterTl.to(
-      blueElement,
-      { y: '-100%', duration: 0.8, ease: 'bounce.out' },
-      '-=0.6',
-    );
-    masterTl.to(
-      greenElement,
-      { y: '-100%', duration: 1, ease: 'circ.out' },
-      '-=0.4',
+      preloader,
+      {
+        y: '-100%',
+        duration: 1,
+        ease: 'power4.inOut',
+      },
+      '<0.1',
     );
 
     masterTl.to(
       mainContentElement,
       {
-        opacity: 1,
-        visibility: 'visible',
-        pointerEvents: 'auto',
-        duration: 0.6,
-        ease: 'power2.out',
-        clearProps: 'all',
+        autoAlpha: 1,
+        duration: 1,
+        ease: 'power4.out',
       },
-      '-=0.3',
+      '<0.2',
     );
 
-    // Añade animaciones internas
-    masterTl.add(this.animateTitles(), '-=0.6');
+    masterTl.add(this.animateTitles(), '-=0.7');
+
     masterTl.add(this.animateArrow(), '-=0.5');
   }
 
@@ -230,7 +194,7 @@ export default class HomeComponent implements AfterViewInit, OnInit {
     let secondary = splitSecondaryTitle.chars;
 
     tl.from(splitPrincipalTitle.chars, {
-      scale: () => gsap.utils.random(0, 20),
+      scale: () => gsap.utils.random(0, 10),
       y: () => gsap.utils.random(-100, 150),
       x: () => gsap.utils.random(-300, 350),
       rotate: () => gsap.utils.random(0, 360),
@@ -249,24 +213,20 @@ export default class HomeComponent implements AfterViewInit, OnInit {
         transformOrigin: '0% 50% -50',
         ease: 'back',
         stagger: 0.01,
-        delay: 0.5,
       },
       0.5,
     );
-    return tl;
   }
 
-  private animateArrow(): gsap.core.Timeline {
+  private animateArrow(): void {
     const arrowDownAnimation = this.arrowDown.nativeElement;
-    let tl = gsap.timeline();
 
-    tl.from(arrowDownAnimation, {
+    gsap.from(arrowDownAnimation, {
       y: -80,
       duration: 2,
       ease: 'bounce',
       repeat: 1,
     });
-    return tl;
   }
 
   private animateAbout(): void {
