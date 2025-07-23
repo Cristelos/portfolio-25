@@ -1,4 +1,22 @@
-<div class="w-full">
+<!--Preloader-->
+<div
+  #preloader
+  class="fixed inset-0 bg-white z-[9999] flex items-center justify-center overflow-hidden"
+>
+  <div #pink class="absolute inset-0 z-[9998] bg-pink"></div>
+  <div #blue class="absolute inset-0 z-[9997] bg-blue"></div>
+  <div #green class="absolute inset-0 z-[9996] bg-green"></div>
+
+  <div #preloaderText class="hidden sm:block z-[9999] text-center w-full px-4">
+    <h2
+      class="text-4xl sm:text-6xl font-bold text-blue leading-tight uppercase w-full"
+    >
+      Patricia Fernández
+    </h2>
+  </div>
+</div>
+
+<div #mainContent class="w-full">
   <!-- Header section-->
   <header
     class="header bg-blue min-h-screen w-full flex justify-center items-center"

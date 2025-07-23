@@ -59,8 +59,6 @@ export class CarouselComponent implements AfterViewInit {
           }
         }
 
-        console.log('Ancho de un set calculado:', widthOfOneSet);
-
         const tl = gsap.timeline({ repeat: -1, ease: 'none' });
 
         tl.to(carouselTrack, {

@@ -192,7 +192,7 @@ export const projects: Project[] = [
       { id: 'angularjs', name: 'Angular' },
       { id: 'redux', name: 'Redux' },
     ],
-    url: 'https://cristelos.github.io/',
+    url: 'https://cristelos.github.io/todo-redux-app/',
     git: 'https://github.com/Cristelos/todo-redux-app',
     description:
       'Una lista de tareas sencilla pero ideal para empezar con Redux. Aprendí a gestionar el estado global y actualizarlo desde distintos componentes.',
