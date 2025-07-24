@@ -49,18 +49,25 @@ export default class HomeComponent implements AfterViewInit, OnInit {
   private meta = inject(Meta);
 
   ngOnInit(): void {
-    this.title.setTitle('Frontend developer');
+    this.title.setTitle('Patricia Fernández – Frontend Developer Angular');
+
     this.meta.updateTag({
       name: 'description',
       content:
-        'Este apartado encontrarás información sobre mí, mis habilidades y mi experiencia laboral',
+        'Desarrolladora frontend especializada en Angular. Diseño y desarrollo de interfaces modernas, accesibles y funcionales.',
     });
-    this.meta.updateTag({ name: 'og:title', content: 'Frontend developer' });
+
     this.meta.updateTag({
       name: 'keywords',
       content:
-        'experiencia laboral, cv,habilidades,skills,angular, html,css,patricia fernández,typescript',
+        'desarrolladora frontend, Angular, TypeScript, diseño web, desarrollo web, UI, UX, HTML, CSS, Patricia Fernández',
     });
+
+    this.meta.updateTag({
+      property: 'og:title',
+      content: 'Patricia Fernández – Frontend Developer Angular',
+    });
+
     this.meta.updateTag({
       property: 'og:image',
       content:
@@ -152,7 +159,6 @@ export default class HomeComponent implements AfterViewInit, OnInit {
         preloader.remove();
         document.body.classList.remove('loading');
       },
-      //delay: 0.3,
     });
 
     gsap.set([pinkElement, blueElement, greenElement], { yPercent: 100 });

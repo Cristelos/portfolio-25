@@ -48,17 +48,25 @@ export default class PortfolioComponent implements AfterViewInit, OnInit {
   private meta = inject(Meta);
 
   ngOnInit(): void {
-    this.title.setTitle('Portfolio');
+    this.title.setTitle('Proyectos – Portfolio de Patricia Fernández');
+
     this.meta.updateTag({
       name: 'description',
-      content: 'Mis projectos',
+      content:
+        'Explora mis proyectos de desarrollo frontend con Angular, JavaScript y otras tecnologías. Prácticas reales y personales.',
     });
-    this.meta.updateTag({ name: 'og:title', content: 'Portfolio' });
+
     this.meta.updateTag({
       name: 'keywords',
       content:
-        'experiencia laboral, cv,habilidades,skills,angular, html,css,patricia fernández,typescript',
+        'portfolio frontend, proyectos Angular, desarrollo web, aplicaciones web, TypeScript, HTML, CSS, Patricia Fernández',
     });
+
+    this.meta.updateTag({
+      property: 'og:title',
+      content: 'Proyectos – Portfolio de Patricia Fernández',
+    });
+
     this.meta.updateTag({
       property: 'og:image',
       content:

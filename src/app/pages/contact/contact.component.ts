@@ -32,26 +32,34 @@ import { Meta, Title } from '@angular/platform-browser';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export default class ContactComponent implements AfterViewInit {
-    // Metadatos
+  // Metadatos
   private title = inject(Title);
   private meta = inject(Meta);
 
   ngOnInit(): void {
-    this.title.setTitle('Contact');
+    this.title.setTitle('Contacto – Patricia Fernández');
+
     this.meta.updateTag({
       name: 'description',
       content:
-        'Contacta conmigo',
+        '¿Te gustaría que trabajáramos juntos? Contacta conmigo para propuestas laborales o colaboraciones como frontend developer.',
     });
-    this.meta.updateTag({ name: 'og:title', content: 'Contact' });
+
     this.meta.updateTag({
       name: 'keywords',
       content:
-        'experiencia laboral, cv,habilidades,skills,angular, html,css,patricia fernández,typescript',
+        'contacto, frontend developer, Patricia Fernández, propuestas laborales, colaboraciones, desarrolladora Angular',
     });
-        this.meta.updateTag({
+
+    this.meta.updateTag({
+      property: 'og:title',
+      content: 'Contacto – Patricia Fernández',
+    });
+
+    this.meta.updateTag({
       property: 'og:image',
-      content: 'https://res.cloudinary.com/dgguxcib9/image/upload/v1751824219/portfolio/logo-web_hthtfp.png',
+      content:
+        'https://res.cloudinary.com/dgguxcib9/image/upload/v1751824219/portfolio/logo-web_hthtfp.png',
     });
   }
 

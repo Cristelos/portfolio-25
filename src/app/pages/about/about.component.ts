@@ -32,17 +32,25 @@ export default class AboutComponent implements AfterViewInit, OnInit {
   private meta = inject(Meta);
 
   ngOnInit(): void {
-    this.title.setTitle('About me');
+    this.title.setTitle('Sobre mí – Patricia Fernández, Frontend Angular');
+
     this.meta.updateTag({
       name: 'description',
-      content: 'Información sobre mí, mis habilidades y mi experiencia laboral',
+      content:
+        'Conoce mi perfil como frontend developer: experiencia, habilidades técnicas, enfoque en diseño web y trabajo en equipo.',
     });
-    this.meta.updateTag({ name: 'og:title', content: 'About me' });
+
     this.meta.updateTag({
       name: 'keywords',
       content:
-        'experiencia laboral, cv,habilidades,skills,angular, html,css,patricia fernández,typescript',
+        'sobre mí, experiencia laboral, frontend Angular, diseño web, CSS, HTML, Patricia Fernández, desarrolladora frontend',
     });
+
+    this.meta.updateTag({
+      property: 'og:title',
+      content: 'Sobre mí – Patricia Fernández, Frontend Angular',
+    });
+
     this.meta.updateTag({
       property: 'og:image',
       content:
